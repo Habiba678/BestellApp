@@ -800,11 +800,9 @@
     align-items: flex-start;                  /* Plus oben ausrichten */
     gap: 12px;
     background: with;
-    
     border-radius: 6px;
     padding: 16px;
     margin-bottom: 14px;
-  
     box-shadow: none !important;              /* flach */
     transition: background .2s ease;
     /* alte Unterstriche aushebeln, falls vorhanden */
@@ -857,7 +855,6 @@
     height: 180px;
     object-fit: cover;
     border-top: 1px solid #dcdcdc;
-    
     margin: 0;
     position: relative;
    
