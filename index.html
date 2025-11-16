@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BestellApp – Paradise Noodles</title>
+
+    <meta name="theme-color" content="#d4af37" />
+
+    <link rel="icon" href="assets/Favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/Favicon/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="sytles/basket.css" />
+    <link rel="stylesheet" href="sytles/standard.css" />
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-bar">
+          <img
+            src="assets/Logo/Logo.png"
+            alt="BestellApp Logo"
+            class="brand"
+          />
+
+          <button
+            class="menu-toggle"
+            aria-label="Menü öffnen"
+            aria-expanded="false"
+            aria-controls="navMenu"
+          >
+            <span class="menu-icon"></span>
+          </button>
+
+          <nav id="navMenu" class="nav-menu" aria-hidden="true">
+            <ul>
+              <li><a href="#menu">Menü</a></li>
+              <li><a href="#basket">Warenkorb</a></li>
+              <li><a href="#about">Impressum</a></li>
+              <li><a href="#contact">Kontakt</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+        <div class="main-stack">
+          <section class="hero-section" aria-label="Restaurant Vorschau"></section>
+
+          <section class="noodlebox-section">
+            <div class="noodlebox-wrapper">
+              <img
+                src="assets/img/takeaway.png"
+                alt="Illustration einer Nudelbox"
+                class="noodlebox-img"
+              />
+            </div>
+          </section>
+
+          <section class="restaurant-header">
+            <h2 id="restaurant-title">Paradise Noodles</h2>
+            <p class="restaurant-meta">
+              <span aria-label="Bewertung">⭐ 4,2 / 5</span> · Asiatische Küche · Frisch & würzig
+            </p>
+          </section>
+
+            <!-- TABS -->
+      <nav class="category-tabs" aria-label="Kategorien">
+        <ul>
+          <li class="tab-btn" data-category="Salate">Salate</li>
+          <li class="tab-btn" data-category="Hauptgerichte">Hauptgerichte</li>
+          <li class="tab-btn" data-category="Beilagen">Beilagen</li>
+          <li class="tab-btn" data-category="Getränke">Getränke</li>
+          <li class="tab-btn" data-category="Nachspeisen">Nachspeisen</li>
+        </ul>
+      </nav>
+
+          <section class="hero-section-lower" aria-label="Unterer Bildabschnitt"></section>
+
+          <main id="main" class="menu-area" role="main">
+            <section id="menu" class="menu" aria-label="Gerichte"></section>
+          </main>
+        </div>
+
+        <!-- Desktop cart -->
+        <aside
+          id="basket"
+          class="basket"
+          aria-labelledby="basket-title"
+          aria-live="polite">
+        
+          <h2 id="basket-title">Warenkorb</h2>
+          
+          <div id="basketItems"></div>
+
+          <div class="basket-summary" aria-label="Zusammenfassung">
+            <div class="row">
+              <span>Zwischensumme</span><span id="subTotal">0,00 €</span>
+            </div>
+            <div class="row">
+              <span>Lieferkosten</span><span id="delivery">3,50 €</span>
+            </div>
+            <div class="row total">
+              <strong>Gesamt</strong><strong id="grandTotal">3,50 €</strong>
+            </div>
+            <button id="checkoutBtn" class="btn btn-primary" aria-label="Bestellen">
+              Bestellen
+            </button>
+            <p id="orderMsg" class="order-msg" role="status" aria-live="polite"></p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Mobile cart -->
+      <div id="basketDialog" class="basket-dialog" hidden>
+        <div
+          class="basket-dialog-content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="basket-title-mobile"
+        >
+          <header class="basket-dialog-header">
+            <h2 id="basket-title-mobile">Warenkorb</h2>
+            <button
+              id="closeDialog"
+              class="close-dialog"
+              aria-label="Warenkorb schließen"
+            >
+                    
+            </button>
+          </header>
+
+          <div id="basketItemsMobile" class="basket-dialog-items"></div>
+
+          <div class="basket-summary-mobile" aria-label="Zusammenfassung">
+            <div class="row">
+              <span>Zwischensumme</span><span id="subTotalM">0,00 €</span>
+            </div>
+            <div class="row">
+              <span>Lieferkosten</span><span id="deliveryM">3,50 €</span>
+            </div>
+            <div class="row total">
+              <strong>Gesamt</strong><strong id="grandTotalM">3,50 €</strong>
+            </div>
+            <button id="checkoutBtnM" class="btn-primary-mobile" aria-label="Bestellen">
+              Bestellen
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile cart button -->
+      <button
+        id="basketToggle"
+        class="basket-toggle"
+        aria-expanded="false"
+        aria-controls="basketDialog"
+      >
+        🛒 Warenkorb · <span id="miniTotal">0,00 €</span>
+      </button>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <small>© 2025 BestellApp · Demo-Projekt</small>
+      </footer>
+    </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="scripts/db.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
