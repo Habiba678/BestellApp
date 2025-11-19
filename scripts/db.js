@@ -112,63 +112,6 @@ let menu = [
     },
   
     {
-      category: "Salate",
-      items: [
-        {
-          name: "Kleiner gemischter Salat",
-          description: "Blattsalat, Tomate, Gurke, Haus-Dressing",
-          price: 4.0
-        },
-        {
-          name: "Großer gemischter Salat",
-          description: "Blattsalat, Tomate, Gurke, Mais, Paprika",
-          price: 6.5
-        },
-        {
-          name: "Caesar Salat",
-          description: "Römersalat, Croutons, Parmesan, Caesar-Dressing",
-          price: 7.2
-        },
-        {
-          name: "Tomaten-Mozzarella-Salat",
-          description: "Tomaten, Mozzarella, Basilikum, Olivenöl",
-          price: 6.8
-        },
-        {
-          name: "Gurkensalat",
-          description: "Frische Gurken in Joghurt-Dressing",
-          price: 4.5
-        }
-      ]
-    },
-  
-    {
-      category: "Nachspeisen",
-      items: [
-        {
-          name: "Tiramisu",
-          description: "Klassisches italienisches Dessert mit Mascarpone",
-          price: 5.5
-        },
-        {
-          name: "Panna Cotta",
-          description: "Mit Beerensoße",
-          price: 5.0
-        },
-        {
-          name: "Schokoladenmousse",
-          description: "Cremig und schokoladig",
-          price: 4.8
-        },
-        {
-          name: "Zitronensorbet",
-          description: "Erfrischend und leicht",
-          price: 4.0
-        }
-      ]
-    },
-  
-    {
       category: "Getränke",
       items: [
         {

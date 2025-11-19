@@ -11,9 +11,9 @@ const DELIVERY_COST = 3.50;
 
 // Kategorie-Bilder (optional)
 const categoryImages = {
-  "Hauptgerichte": 'assets/img/salad.jpg',
-  "Beilagen":      'assets/img/salad.jpg',
-  "Salate":        'assets/img/salad.jpg',
+  "Hauptgerichte": 'assets/img/pizza.jpg',
+  "Beilagen":      'assets/img/beilage.jpg',
+  "Salate":        'assets/img/getränk.jpg',
   "Nachspeisen":   'assets/img/salad.jpg',
   "Getränke":      'assets/img/salad.jpg',
 };
@@ -25,10 +25,10 @@ const categoryImages = {
 
 // Menü / Kategorien
 let menuContainer      = document.getElementById('menu');
-let tabButtons         = document.querySelectorAll('.tab-btn');
+let tabButtons         = document.querySelectorAll('.pn-tab-btn');
 
 // Burger-Menü im Header
-let menuToggle         = document.querySelector('.menu-toggle');
+let menuToggle         = document.querySelector('.pn-menu-toggle');
 let navMenu            = document.getElementById('navMenu');
 
 // Desktop-Warenkorb
@@ -39,12 +39,20 @@ let grandTotalDesktop  = document.getElementById('grandTotal');
 let checkoutBtn        = document.getElementById('checkoutBtn');
 let orderMsg           = document.getElementById('orderMsg');
 
+// 🔹 Leer-Zustand / Summary Desktop
+let emptyDesktop       = document.getElementById('basketEmptyDesktop');
+let basketSummaryDesk  = document.querySelector('.pn-basket-summary');
+
 // Mobiler Warenkorb
 let basketItemsMobile  = document.getElementById('basketItemsMobile');
 let subTotalMobile     = document.getElementById('subTotalM');
 let deliveryMobile     = document.getElementById('deliveryM');
 let grandTotalMobile   = document.getElementById('grandTotalM');
 let checkoutBtnM       = document.getElementById('checkoutBtnM');
+
+// 🔹 Leer-Zustand / Summary Mobile
+let emptyMobile        = document.getElementById('basketEmptyMobile');
+let basketSummaryMob   = document.querySelector('.pn-basket-summary-mobile');
 
 // Mobile Warenkorb-Dialog
 let basketToggle       = document.getElementById('basketToggle');
@@ -55,10 +63,12 @@ let closeDialog        = document.getElementById('closeDialog');
 let miniTotalEl        = document.getElementById('miniTotal');
 
 
-// INIT ------
-// Wird beim Laden der Seite gestartet (wie bei deiner Quiz-App)
+// ==============================
+// INIT -------------------------
+// ==============================
+
 function init() {
-  // Alles Menü anzeigen
+  // Menü anzeigen
   showMenu();
 
   // Warenkorb initial anzeigen (leer)
@@ -78,16 +88,18 @@ function init() {
 }
 
 
-// SHOW MENU ----------
-// Entscheidet, welche Kategorie gezeigt wird
+// ==============================
+// MENU RENDERING ---------------
+// ==============================
+
 function showMenu() {
   renderMenu(currentCategory);
 }
 
-
-// RENDER MENU ----------
 // Zeigt alle Gerichte im Menü an
 function renderMenu(filterCategory = null) {
+  if (!menuContainer) return;
+
   menuContainer.innerHTML = '';
 
   menu.forEach(category => {
@@ -98,37 +110,37 @@ function renderMenu(filterCategory = null) {
 
     // Kategorie-Container
     let section = document.createElement('section');
-    section.classList.add('category-section');
+    section.classList.add('pn-category-section');
 
     // Bild der Kategorie
     let img = document.createElement('img');
     img.src = categoryImages[category.category] || "";
     img.alt = category.category;
-    img.classList.add('category-image');
+    img.classList.add('pn-category-image');
     section.appendChild(img);
 
     // Titel
     let categoryTitle = document.createElement('h3');
     categoryTitle.textContent = category.category;
-    categoryTitle.classList.add('category-title');
+    categoryTitle.classList.add('pn-category-title');
     section.appendChild(categoryTitle);
 
     // Alle Gerichte
     category.items.forEach(item => {
       let dish = document.createElement('article');
-      dish.classList.add('menu-item');
+      dish.classList.add('pn-menu-item');
 
       dish.innerHTML = `
-        <div class="menu-item-info">
+        <div class="pn-menu-item-info">
           <h4>${item.name}</h4>
           <p>${item.description || ''}</p>
-          <span class="price">${item.price.toFixed(2).replace('.', ',')} €</span>
+          <span class="pn-price">${item.price.toFixed(2).replace('.', ',')} €</span>
         </div>
-        <button class="add-btn" aria-label="Zu Warenkorb hinzufügen">+</button>
+        <button class="pn-add-btn" aria-label="Zu Warenkorb hinzufügen">+</button>
       `;
 
-      // Klick auf + (wie answer() im Quiz)
-      let addBtn = dish.querySelector('.add-btn');
+      // Klick auf + (Gericht zum Warenkorb)
+      let addBtn = dish.querySelector('.pn-add-btn');
       addBtn.addEventListener('click', () => {
         addToCart(item);
       });
@@ -141,7 +153,10 @@ function renderMenu(filterCategory = null) {
 }
 
 
-// ADD TO CART ----------
+// ==============================
+// CART LOGIC -------------------
+// ==============================
+
 // Fügt ein Gericht zum Warenkorb hinzu
 function addToCart(item) {
   let existing = cart.find(entry => entry.name === item.name);
@@ -159,8 +174,6 @@ function addToCart(item) {
   updateCart();
 }
 
-
-// UPDATE CART ----------
 // Steuert die Aktualisierung des Warenkorbs
 function updateCart() {
   renderCartDesktop();
@@ -168,99 +181,148 @@ function updateCart() {
 }
 
 
-// RENDER CART DESKTOP ----------
+// ---------- GEMEINSAMES ITEM (Template) ----------
+
+function createBasketItem(entry, index) {
+  const tpl = document.getElementById('basketItemTemplate');
+  if (!tpl) return document.createTextNode('');
+
+  const fragment = tpl.content.cloneNode(true);
+
+  const nameEl  = fragment.querySelector('.basket-item-name');
+  const qtyEl   = fragment.querySelector('.basket-item-qty');
+  const totalEl = fragment.querySelector('.basket-item-total');
+  const btnPlus   = fragment.querySelector('.qty-plus');
+  const btnMinus  = fragment.querySelector('.qty-minus');
+  const btnDelete = fragment.querySelector('.qty-delete');
+
+  if (nameEl)  nameEl.textContent  = entry.name;
+  if (qtyEl)   qtyEl.textContent   = entry.quantity;
+  if (totalEl) totalEl.textContent = formatCurrency(entry.price * entry.quantity);
+
+  if (btnPlus) {
+    btnPlus.addEventListener('click', () => {
+      entry.quantity++;
+      updateCart();
+    });
+  }
+
+  if (btnMinus) {
+    btnMinus.addEventListener('click', () => {
+      if (entry.quantity > 1) {
+        entry.quantity--;
+      } else {
+        cart.splice(index, 1);
+      }
+      updateCart();
+    });
+  }
+
+  if (btnDelete) {
+    btnDelete.addEventListener('click', () => {
+      cart.splice(index, 1);
+      updateCart();
+    });
+  }
+
+  return fragment;
+}
+
+
+// ---------- DESKTOP ----------
+
 function renderCartDesktop() {
   if (!basketItemsDesktop) return;
 
   basketItemsDesktop.innerHTML = '';
 
   if (cart.length === 0) {
-    let emptyMsg = document.createElement('p');
-    emptyMsg.classList.add('basket-empty');
-    emptyMsg.textContent = 'Dein Warenkorb ist leer.';
-    basketItemsDesktop.appendChild(emptyMsg);
+    // 🔹 Leer-Zustand anzeigen
+    if (emptyDesktop) {
+      emptyDesktop.style.display = 'flex';
+    }
+    if (basketSummaryDesk) {
+      basketSummaryDesk.style.display = 'none';
+    }
 
-    subTotalDesktop.textContent   = formatCurrency(0);
-    deliveryDesktop.textContent   = formatCurrency(DELIVERY_COST);
-    grandTotalDesktop.textContent = formatCurrency(DELIVERY_COST);
+    // Zahlen auf 0 setzen
+    if (subTotalDesktop)   subTotalDesktop.textContent   = formatCurrency(0);
+    if (deliveryDesktop)   deliveryDesktop.textContent   = formatCurrency(DELIVERY_COST);
+    if (grandTotalDesktop) grandTotalDesktop.textContent = formatCurrency(DELIVERY_COST);
     return;
   }
 
+  // 🔹 Es gibt Artikel: Leerblock verstecken, Summary zeigen
+  if (emptyDesktop) emptyDesktop.style.display = 'none';
+  if (basketSummaryDesk) basketSummaryDesk.style.display = 'block';
+
   let subtotal = 0;
 
-  cart.forEach(entry => {
+  cart.forEach((entry, index) => {
     subtotal += entry.price * entry.quantity;
 
-    let row = document.createElement('div');
-    row.classList.add('basket-item');
-
-    row.innerHTML = `
-      <span class="basket-item-name">${entry.name}</span>
-      <span class="basket-item-qty">x${entry.quantity}</span>
-      <span class="basket-item-total">${formatCurrency(entry.price * entry.quantity)}</span>
-    `;
-
-    basketItemsDesktop.appendChild(row);
+    const itemFragment = createBasketItem(entry, index);
+    basketItemsDesktop.appendChild(itemFragment);
   });
 
-  subTotalDesktop.textContent   = formatCurrency(subtotal);
-  deliveryDesktop.textContent   = formatCurrency(DELIVERY_COST);
-  grandTotalDesktop.textContent = formatCurrency(subtotal + DELIVERY_COST);
+  if (subTotalDesktop)   subTotalDesktop.textContent   = formatCurrency(subtotal);
+  if (deliveryDesktop)   deliveryDesktop.textContent   = formatCurrency(DELIVERY_COST);
+  if (grandTotalDesktop) grandTotalDesktop.textContent = formatCurrency(subtotal + DELIVERY_COST);
 }
 
 
-// RENDER CART MOBILE ----------
+// ---------- MOBILE ----------
+
 function renderCartMobile() {
   if (!basketItemsMobile) return;
 
   basketItemsMobile.innerHTML = '';
 
   if (cart.length === 0) {
-    let emptyMsg = document.createElement('p');
-    emptyMsg.classList.add('basket-empty-mobile');
-    emptyMsg.textContent = 'Dein Warenkorb ist leer.';
-    basketItemsMobile.appendChild(emptyMsg);
+    if (emptyMobile) emptyMobile.style.display = 'flex';
+    if (basketSummaryMob) basketSummaryMob.style.display = 'none';
 
-    subTotalMobile.textContent   = formatCurrency(0);
-    deliveryMobile.textContent   = formatCurrency(DELIVERY_COST);
-    grandTotalMobile.textContent = formatCurrency(DELIVERY_COST);
-    miniTotalEl.textContent      = formatCurrency(DELIVERY_COST);
+    if (subTotalMobile)   subTotalMobile.textContent   = formatCurrency(0);
+    if (deliveryMobile)   deliveryMobile.textContent   = formatCurrency(DELIVERY_COST);
+    if (grandTotalMobile) grandTotalMobile.textContent = formatCurrency(DELIVERY_COST);
+
+    if (miniTotalEl) miniTotalEl.textContent = formatCurrency(0);
     return;
   }
 
+  if (emptyMobile) emptyMobile.style.display = 'none';
+  if (basketSummaryMob) basketSummaryMob.style.display = 'block';
+
   let subtotal = 0;
 
-  cart.forEach(entry => {
+  cart.forEach((entry, index) => {
     subtotal += entry.price * entry.quantity;
 
-    let row = document.createElement('div');
-    row.classList.add('basket-item-mobile');
-
-    row.innerHTML = `
-      <span class="basket-item-name">${entry.name}</span>
-      <span class="basket-item-qty">x${entry.quantity}</span>
-      <span class="basket-item-total">${formatCurrency(entry.price * entry.quantity)}</span>
-    `;
-
-    basketItemsMobile.appendChild(row);
+    const itemFragment = createBasketItem(entry, index);
+    basketItemsMobile.appendChild(itemFragment);
   });
 
-  subTotalMobile.textContent   = formatCurrency(subtotal);
-  deliveryMobile.textContent   = formatCurrency(DELIVERY_COST);
-  grandTotalMobile.textContent = formatCurrency(subtotal + DELIVERY_COST);
-  miniTotalEl.textContent      = formatCurrency(subtotal + DELIVERY_COST);
+  if (subTotalMobile)   subTotalMobile.textContent   = formatCurrency(subtotal);
+  if (deliveryMobile)   deliveryMobile.textContent   = formatCurrency(DELIVERY_COST);
+  if (grandTotalMobile) grandTotalMobile.textContent = formatCurrency(subtotal + DELIVERY_COST);
+
+  if (miniTotalEl) miniTotalEl.textContent = formatCurrency(subtotal + DELIVERY_COST);
 }
 
 
-// HELPER ----------
-// Geldformat wie "12,50 €"
+// ==============================
+// HELPER -----------------------
+// ==============================
+
 function formatCurrency(value) {
   return value.toFixed(2).replace('.', ',') + ' €';
 }
 
 
-// TABS (KATEGORIEN) ----------
-// funktioniert wie "nextQuestion" – wechselt Ansicht
+// ==============================
+// TABS (KATEGORIEN) ------------
+// ==============================
+
 function initTabs() {
   if (!tabButtons || tabButtons.length === 0) return;
 
@@ -269,19 +331,19 @@ function initTabs() {
       let category = btn.dataset.category;
       currentCategory = category;
 
-      // aktive Tab-Klasse setzen
       tabButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Menü neu rendern
       renderMenu(category);
     });
   });
 }
 
 
-// BURGER MENÜ ----------
-// Öffnet / schließt das Navigationsmenü im Header
+// ==============================
+// BURGER MENÜ ------------------
+// ==============================
+
 function initBurgerMenu() {
   if (!menuToggle || !navMenu) return;
 
@@ -289,30 +351,30 @@ function initBurgerMenu() {
     let isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
 
     if (isOpen) {
-      // Menü schließen
       menuToggle.setAttribute('aria-expanded', 'false');
       navMenu.setAttribute('aria-hidden', 'true');
-      navMenu.classList.remove('open');
+      navMenu.classList.remove('pn-open');
     } else {
-      // Menü öffnen
       menuToggle.setAttribute('aria-expanded', 'true');
       navMenu.setAttribute('aria-hidden', 'false');
-      navMenu.classList.add('open');
+      navMenu.classList.add('pn-open');
     }
   });
 
-  // Menü schließen, wenn man auf einen Link klickt
   navMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       menuToggle.setAttribute('aria-expanded', 'false');
       navMenu.setAttribute('aria-hidden', 'true');
-      navMenu.classList.remove('open');
+      navMenu.classList.remove('pn-open');
     });
   });
 }
 
 
-// BASKET DIALOG (MOBILE) ----------
+// ==============================
+// BASKET DIALOG (MOBILE) -------
+// ==============================
+
 function initBasketDialog() {
   if (!basketToggle || !basketDialog) return;
 
@@ -337,8 +399,10 @@ function initBasketDialog() {
 }
 
 
-// CHECKOUT ----------
-// ähnlich wie showEndScreen / restartGame im Quiz
+// ==============================
+// CHECKOUT ---------------------
+// ==============================
+
 function initCheckout() {
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
@@ -364,21 +428,25 @@ function initCheckout() {
 }
 
 
-// RESET CART ----------
-// setzt Warenkorb zurück (wie restartGame)
+// ==============================
+// RESET CART -------------------
+// ==============================
+
 function resetCart() {
   cart = [];
 
   if (miniTotalEl) {
-    miniTotalEl.textContent = formatCurrency(DELIVERY_COST);
+    miniTotalEl.textContent = formatCurrency(0);
   }
 
   updateCart();
 }
 
 
-// DOMCONTENTLOADED ----------
-// Startpunkt, wie dein init() im Quiz
+// ==============================
+// DOMCONTENTLOADED -------------
+// ==============================
+
 document.addEventListener('DOMContentLoaded', () => {
   init();
 });

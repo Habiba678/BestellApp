@@ -3,41 +3,42 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BestellApp – Paradise Noodles</title>
+    <title>BestellApp</title>
 
     <meta name="theme-color" content="#d4af37" />
 
     <link rel="icon" href="assets/Favicon/favicon.ico" />
     <link rel="apple-touch-icon" href="assets/Favicon/apple-touch-icon.png" />
 
+    <!-- CSS-Dateien -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="sytles/basket.css" />
     <link rel="stylesheet" href="sytles/standard.css" />
   </head>
 
   <body>
-    <div class="page-wrapper">
-      <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <div class="pn-page-wrapper">
+      <a class="pn-skip-link" href="#main">Zum Inhalt springen</a>
 
-      <!-- Header -->
-      <header class="app-header">
-        <div class="app-bar">
+      <!-- HEADER -->
+      <header class="pn-app-header">
+        <div class="pn-app-bar">
           <img
             src="assets/Logo/Logo.png"
             alt="BestellApp Logo"
-            class="brand"
+            class="pn-brand"
           />
 
           <button
-            class="menu-toggle"
+            class="pn-menu-toggle"
             aria-label="Menü öffnen"
             aria-expanded="false"
             aria-controls="navMenu"
           >
-            <span class="menu-icon"></span>
+            <span class="pn-menu-icon"></span>
           </button>
 
-          <nav id="navMenu" class="nav-menu" aria-hidden="true">
+          <nav id="navMenu" class="pn-nav-menu" aria-hidden="true">
             <ul>
               <li><a href="#menu">Menü</a></li>
               <li><a href="#basket">Warenkorb</a></li>
@@ -48,131 +49,213 @@
         </div>
       </header>
 
-      <!-- Main content -->
-      <div class="content-wrapper">
-        <div class="main-stack">
-          <section class="hero-section" aria-label="Restaurant Vorschau"></section>
+      <!-- CONTENT WRAPPER -->
+      <div class="pn-content-wrapper">
+        <!-- LEFT SIDE / MAIN -->
+        <div class="pn-main-stack">
+          <!-- Hero -->
+          <section
+            class="pn-hero-section"
+            aria-label="Restaurant Vorschau"
+          ></section>
 
-          <section class="noodlebox-section">
-            <div class="noodlebox-wrapper">
+          <!-- Noodlebox Bild -->
+          <section class="pn-noodlebox-section">
+            <div class="pn-noodlebox-wrapper">
               <img
                 src="assets/img/takeaway.png"
                 alt="Illustration einer Nudelbox"
-                class="noodlebox-img"
+                class="pn-noodlebox-img"
               />
             </div>
           </section>
 
-          <section class="restaurant-header">
+          <!-- RESTAURANT INFO -->
+          <section class="pn-restaurant-header">
             <h2 id="restaurant-title">Paradise Noodles</h2>
-            <p class="restaurant-meta">
-              <span aria-label="Bewertung">⭐ 4,2 / 5</span> · Asiatische Küche · Frisch & würzig
+            <p class="pn-restaurant-meta">
+              <span aria-label="Bewertung">Bewertung</span>(4.2 von 5 Sternen)
             </p>
           </section>
 
-            <!-- TABS -->
-      <nav class="category-tabs" aria-label="Kategorien">
-        <ul>
-          <li class="tab-btn" data-category="Salate">Salate</li>
-          <li class="tab-btn" data-category="Hauptgerichte">Hauptgerichte</li>
-          <li class="tab-btn" data-category="Beilagen">Beilagen</li>
-          <li class="tab-btn" data-category="Getränke">Getränke</li>
-          <li class="tab-btn" data-category="Nachspeisen">Nachspeisen</li>
-        </ul>
-      </nav>
+          <!-- TABS -->
+          <nav class="pn-category-tabs" aria-label="Kategorien">
+            <ul>
+              
+              <li class="pn-tab-btn" data-category="Hauptgerichte">
+                Hauptgerichte
+              </li>
+              <li class="pn-tab-btn" data-category="Beilagen">Beilagen</li>
+              <li class="pn-tab-btn" data-category="Getränke">Getränke</li>
+            </ul>
+          </nav>
 
-          <section class="hero-section-lower" aria-label="Unterer Bildabschnitt"></section>
+          <!-- Unteres Hero Bild -->
+          <section
+            class="pn-hero-section-lower"
+            aria-label="Unterer Bildabschnitt"
+          ></section>
 
-          <main id="main" class="menu-area" role="main">
-            <section id="menu" class="menu" aria-label="Gerichte"></section>
+          <!-- MENU -->
+          <main id="main" class="pn-menu-area" role="main">
+            <section id="menu" class="pn-menu" aria-label="Gerichte"></section>
           </main>
         </div>
 
-        <!-- Desktop cart -->
+        <!-- RIGHT SIDE / DESKTOP BASKET -->
         <aside
           id="basket"
-          class="basket"
+          class="pn-basket"
           aria-labelledby="basket-title"
-          aria-live="polite">
-        
-          <h2 id="basket-title">Warenkorb</h2>
-          
-          <div id="basketItems"></div>
+          aria-live="polite"
+        >
+          <h2 id="basket-title">Deine Bestellung</h2>
 
-          <div class="basket-summary" aria-label="Zusammenfassung">
-            <div class="row">
-              <span>Zwischensumme</span><span id="subTotal">0,00 €</span>
-            </div>
-            <div class="row">
-              <span>Lieferkosten</span><span id="delivery">3,50 €</span>
-            </div>
-            <div class="row total">
-              <strong>Gesamt</strong><strong id="grandTotal">3,50 €</strong>
-            </div>
-            <button id="checkoutBtn" class="btn btn-primary" aria-label="Bestellen">
+          <!-- 🔹 LEER-ZUSTAND DESKTOP -->
+          <div id="basketEmptyDesktop" class="pn-basket-empty">
+            <img
+              src="assets/img/cart.svg"
+              class="pn-basket-empty-icon"
+              alt=""
+            />
+            <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
+            <button class="pn-basket-empty-btn pn-empty-desktop" disabled>
               Bestellen
             </button>
-            <p id="orderMsg" class="order-msg" role="status" aria-live="polite"></p>
+          </div>
+
+          <!-- Artikel-Liste DESKTOP -->
+          <div id="basketItems" class="pn-basket-items"></div>
+
+          <!-- SUMMENBEREICH DESKTOP -->
+          <div id="basketSummaryDesk" class="pn-basket-summary">
+            <div class="pn-row">
+              <span>Zwischensumme</span><span id="subTotal">0,00 €</span>
+            </div>
+            <div class="pn-row">
+              <span>Lieferkosten</span><span id="delivery">3,50 €</span>
+            </div>
+            <div class="pn-row pn-total">
+              <strong>Gesamt</strong
+              ><strong id="grandTotal">3,50 €</strong>
+            </div>
+            <button id="checkoutBtn" class="pn-btn pn-btn-primary">
+              Bestellen
+            </button>
+            <p id="orderMsg" class="pn-order-msg" role="status"></p>
           </div>
         </aside>
       </div>
 
-      <!-- Mobile cart -->
-      <div id="basketDialog" class="basket-dialog" hidden>
+      <!-- MOBILE BASKET DIALOG -->
+      <div id="basketDialog" class="pn-basket-dialog" hidden>
         <div
-          class="basket-dialog-content"
+          class="pn-basket-dialog-content"
           role="dialog"
           aria-modal="true"
           aria-labelledby="basket-title-mobile"
         >
-          <header class="basket-dialog-header">
-            <h2 id="basket-title-mobile">Warenkorb</h2>
+          <header class="pn-basket-dialog-header">
+            <h2 id="basket-title-mobile">Deine Bestellung</h2>
             <button
               id="closeDialog"
-              class="close-dialog"
+              class="pn-close-dialog"
               aria-label="Warenkorb schließen"
             >
-                    
+              ✕
             </button>
           </header>
 
-          <div id="basketItemsMobile" class="basket-dialog-items"></div>
+          <!-- 🔹 LEER-ZUSTAND MOBILE -->
+          <div id="basketEmptyMobile" class="pn-basket-empty">
+            <img
+              src="assets/img/cart.svg"
+              class="pn-basket-empty-icon"
+              alt=""
+            />
+            <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
+            <button class="pn-basket-empty-btn pn-empty-mobile" disabled>
+              Bestellen
+            </button>
+          </div>
 
-          <div class="basket-summary-mobile" aria-label="Zusammenfassung">
-            <div class="row">
+          <!-- Artikel-Liste MOBILE -->
+          <div id="basketItemsMobile" class="pn-basket-dialog-items"></div>
+
+          <!-- SUMMENBEREICH MOBILE -->
+          <div id="basketSummaryMobile" class="pn-basket-summary-mobile">
+            <div class="pn-row">
               <span>Zwischensumme</span><span id="subTotalM">0,00 €</span>
             </div>
-            <div class="row">
+            <div class="pn-row">
               <span>Lieferkosten</span><span id="deliveryM">3,50 €</span>
             </div>
-            <div class="row total">
-              <strong>Gesamt</strong><strong id="grandTotalM">3,50 €</strong>
+            <div class="pn-row pn-total">
+              <strong>Gesamt</strong
+              ><strong id="grandTotalM">3,50 €</strong>
             </div>
-            <button id="checkoutBtnM" class="btn-primary-mobile" aria-label="Bestellen">
+            <button id="checkoutBtnM" class="pn-btn-primary-mobile">
               Bestellen
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Mobile cart button -->
+      <!-- MOBILE TOGGLE BUTTON -->
       <button
         id="basketToggle"
-        class="basket-toggle"
+        class="pn-basket-toggle"
         aria-expanded="false"
         aria-controls="basketDialog"
       >
-        🛒 Warenkorb · <span id="miniTotal">0,00 €</span>
+        <img src="assets/img/cart.svg" class="pn-cart-icon" alt="" />
+        <span>Deine Bestellung</span>
+        <span id="miniTotal">0,00 €</span>
       </button>
 
-      <!-- Footer -->
-      <footer class="app-footer">
-        <small>© 2025 BestellApp · Demo-Projekt</small>
+      <!-- Template für Desktop + Mobile -->
+      <template id="basketItemTemplate">
+        <div class="basket-item">
+          <span class="basket-item-name"></span>
+
+          <div class="basket-item-qty-controls">
+            <button class="qty-btn qty-minus" type="button">−</button>
+            <span class="basket-item-qty"></span>
+            <button class="qty-btn qty-plus" type="button">+</button>
+          </div>
+
+          <span class="basket-item-total"></span>
+
+          <button class="qty-btn qty-delete" type="button">
+            <img
+              src="assets/img/delete-bin-line.svg"
+              alt="Löschen"
+            />
+          </button>
+        </div>
+      </template>
+
+      <footer class="pn-app-footer">
+        <div class="footer-left">
+          <img
+            src="assets/img/Material/Favicon/apple-touch-icon.png"
+            class="footer-logo"
+            alt="Logo"
+          />
+          <span>BestellApp</span>
+        </div>
+
+        <div class="footer-right">
+          <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
+          <a href="#">Kontakt</a>
+        </div>
       </footer>
     </div>
 
-  <!-- JAVASCRIPT -->
-  <script src="scripts/db.js"></script>
-  <script src="script.js"></script>
-</body>
+    <!-- SCRIPT FILES -->
+    <script src="script.js"></script>
+    <script src="scripts/db.js"></script>
+    <script src="scripts/tamplate.js"></script>
+  </body>
 </html>

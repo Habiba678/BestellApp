@@ -1,476 +1,461 @@
+/* ===============================
+    DESKTOP WARENKORB
+================================= */
+
+.pn-basket {
+  width: 380px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  border-left: 1px solid #eaeaea;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.08);
+  padding: 12px 20px;
+  margin: 0;
+  padding-top: 1rem;
+  z-index: 900;
+}
+
+/* Titel "Deine Bestellung" */
+#basket-title {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  padding: 1.2rem 0rem;
+  margin: 0;
+  width: calc(100% + 30px);
+  display: block;
+  border-bottom: 2px solid #ddd;
+  margin-left: -14px;
+  margin-right: -14px;
+}
+
+/* LEER-ZUSTAND Desktop & Mobile */
+.pn-basket-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+  color: #555;
+}
+
+.pn-basket-empty-icon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.pn-basket-empty p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Basis-Stil für beide Empty-Buttons */
+.pn-basket-empty-btn {
+  margin-top: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 6px;
+  border: none;
+  width: 100%;
+  background: #eee;
+  color: #999;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#basketEmptyDesktop .pn-basket-empty-btn {
+  max-width: 340px;
+  position: relative;
+  right: 15px;
+  margin: 0 auto;
+  width: calc(100% + 2rem) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .9rem 0rem 0.6rem;
+  margin-top: 16px;
+}
+
+.pn-basket-empty-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(1) invert(0.7);
+}
+
+
+
+   /* ITEMS DESKTOP & MOBILE */
+   
+
 #basketItems {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
-  }
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0 5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+#basketItems::-webkit-scrollbar {
+  width: 6px;
+}
+#basketItems::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Ein einzelnes Item */
+.basket-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.basket-item-name {
+  flex: 1;
+  font-weight: 600;
+  color: #333;
+}
+
+/* - 1 +  Block */
+.basket-item-qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Preis rechts */
+.basket-item-total {
+  font-weight: 700;
+  color: #ff7a00;
+  white-space: nowrap;
+}
+
+/* Buttons + / − / Löschen */
+.qty-btn {
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  color: #ff7a00;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:hover {
+  background: #ff7a00;
+  color: #fff;
+  border-color: #ff7a00;
+}
+
+.qty-btn.qty-delete img {
+  width: 18px;
+  height: 18px;
+  filter: invert(46%) sepia(94%) saturate(2966%) hue-rotate(8deg) brightness(101%);
   
-  /* Scrollbar-Styling */
-  #basketItems::-webkit-scrollbar {
-    width: 6px;
+}
+
+
+
+  /* SUMMARY DESKTOP */
+
+.pn-basket-summary {
+  border-top: 1px solid #eee;
+  padding: 0.9rem 0 1.4rem;
+  background: #fff;
+  position: relative;
+  margin-bottom: 180px;
+  z-index: 10;
+}
+
+.pn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .4rem;
+  font-size: 0.95rem;
+}
+
+.pn-basket-summary .pn-row span:first-child {
+  color: #666;
+}
+
+.pn-basket-summary .pn-row span:last-child {
+  font-weight: 500;
+}
+
+.pn-total strong {
+  font-size: 1.05rem;
+  color: #222;
+}
+
+/* Button Desktop */
+#checkoutBtn {
+  display: block;
+  width: 100%;
+  margin-top: 1.2rem;
+  padding: 0.85rem 1.2rem;
+  background-color: #ff7a00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+#checkoutBtn:hover {
+  background-color: #e66d00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.3);
+}
+
+#checkoutBtn:active {
+  transform: scale(0.98);
+}
+
+
+
+  /* WARENKORB – VOLL BILD */
+
+.pn-basket-dialog[hidden] {
+  display: none !important;
+}
+
+/* Vollbild */
+.pn-basket-dialog {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+/* Inhalt füllt den Screen */
+.pn-basket-dialog-content {
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header oben */
+.pn-basket-dialog-header {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+
+.pn-basket-dialog-header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 700;
+  color: #222;
+}
+
+.pn-close-dialog {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #444;
+}
+
+/* Artikel-Liste im Dialog */
+.pn-basket-dialog-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.2rem 0.5rem;
+}
+
+ 
+  /* SUMMARY MOBILE (weiter oben) */
+ 
+
+.pn-basket-summary-mobile {
+  padding: 1rem 1.2rem 1.4rem;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: none;      
+  margin-top: 0.5rem;     
+}
+
+.pn-basket-summary-mobile .pn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.pn-basket-summary-mobile .pn-row span:first-child {
+  color: #666;
+}
+
+.pn-basket-summary-mobile .pn-row span:last-child {
+  font-weight: 500;
+}
+
+.pn-basket-summary-mobile .pn-total strong {
+  font-size: 1.05rem;
+  color: #222;
+}
+
+/* Button Mobile */
+.pn-btn-primary-mobile,
+#checkoutBtnM {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #ff7a00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: calc(140px);
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.3);
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.pn-btn-primary-mobile:hover,
+#checkoutBtnM:hover {
+  background: #e66d00;
+  transform: translateY(-1px);
+}
+
+
+
+/* MOBILE TOGGLE BUTTON Unten */
+
+
+.pn-basket-toggle {
+  position: fixed;
+  bottom: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff7a00;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.75rem 1.2rem;
+  width: calc(100% - 2rem);
+  max-width: 480px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(255,100,0,0.3);
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+/* Icon etwas größer & weiß */
+.pn-cart-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Text "Deine Bestellung" */
+.pn-basket-toggle span:first-of-type {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Betrag rechts */
+#miniTotal {
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  right: 90px;
+}
+
+
+
+ /*   RESPONSIVE */
+
+@media (max-width: 1020px) {
+  .pn-basket {
+    display: none !important;
   }
-  #basketItems::-webkit-scrollbar-thumb {
-    background: #f12929;
-    border-radius: 4px;
+  .pn-basket-toggle {
+    display: flex !important;
   }
-  
-  .basket-summary {
-    border-top: 1px solid #eee;
-    padding: 1rem;
-    background: #fff;
-    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05); /* sanfter Schatten oben */
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
+}
+
+@media (min-width: 1021px) {
+  .pn-basket-dialog,
+  .pn-basket-toggle {
+    display: none !important;
   }
-  
-  .basket-item {
+  .pn-basket {
     display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
   }
-  
-  .basket-item-info {
-    flex: 1 1 auto;
-    font-weight: 500;
-    color: #333;
-    min-width: 0;
-    word-break: break-word;
-    white-space: normal;
+}
+
+/* Extra: sehr kleine Geräte */
+@media (max-width: 600px) {
+  .pn-basket-dialog-content {
+    height: 100vh;
   }
-  
-  .qty-ctrl {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  
-  
-  .basket-item-total {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    text-align: right;
-  }
-  
-  .basket-item-total strong {
-    display: inline-block;
-    min-width: 5.5ch;
-  }
-  
-  .trash-btn {
-    background: none;
-    border: none;
-    color: #ff7a00; 
-    cursor: pointer;
-    font-size: 1.2rem;
+
+
+  .pn-basket-toggle span:first-of-type {
+    font-size: 20px;
     line-height: 1;
-    transition: transform 0.15s ease, color 0.2s ease;
-    flex: 0 0 auto;
-    margin-left: 0.25rem;
   }
   
-  .trash-btn:hover,
-  .trash-btn:focus {
-    color: #e66d00; 
-    transform: scale(1.15);
-  }
-  
-  .trash-btn:focus-visible {
-    outline: 2px solid #ff7a00;
-    outline-offset: 2px;
-  }
-  
-  .qty-btn {
-    background: #fff;
-    border: 1px solid #ddd;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 1rem;
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
-  }
-  
-  .qty-btn:hover {
-    background-color: #ff7a00;
-    color: #fff;
-    border-color: #ff7a00;
-  }
-  
-  #basket-title {
-    padding-left: 1rem; 
-    display: block;
-    font-size: 1.25rem;
+  /* Betrag rechts */
+  #miniTotal {
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: #222;
-    border-bottom: 1px solid #adadad;
-    text-align: center;
-    padding-top: 30px;
-   
-  }
-  
-  .basket-title-text {
     position: relative;
-    top: -20px !important;
-    display: inline-block;
+    right: 90px;
   }
-  
-  
-  #basketItems .muted {
-    padding-left: 0.6rem;
-    display: block;
-    color: #666;
-    font-style: italic;
-    margin-top: 1rem;
-  }
-  
-  #checkoutBtn {
-    display: block;                
-    width: 100%;                
-    margin-top: 1rem;              
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #ff7a00;     
-    color: #fff;
-    border: none;
-    border-radius: 8px;            
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  }
-  
-  
-  
-  #checkoutBtn:hover,
-  #checkoutBtn:focus {
-    background-color: #e66d00;    
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(255, 122, 0, 0.25);
-  }
-  
-  #checkoutBtn:active {
-    transform: scale(0.98);
-  }
-  
-  #checkoutBtn:focus-visible {
-    outline: 2px solid #ff7a00;
-    outline-offset: 2px;
-  }
-  
-  .basket-dialog {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(3px);
-    display: flex;
-    align-items: flex-end; 
-    justify-content: center;
-    z-index: 999;
-    transition: opacity 0.25s ease;
-  }
-  
-  .basket-dialog-content {
-    background: #fff;
-    width: 100%;
-    max-width: 480px;
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.2);
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    animation: slideUp 0.3s ease forwards;
-  }
-  
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  .basket-dialog-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .basket-dialog-header h2 {
-    font-size: 1.25rem;
+}
+
+  @media (max-width: 480px) {
+  .pn-basket-toggle span:first-of-type {
+    font-size: 16px;
+    line-height: 1;
+  } 
+
+  /* Betrag rechts */
+  #miniTotal {
+    font-size: 16px;
     font-weight: 700;
-    color: #222;
-  }
-  
-  .close-dialog {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #555;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    
-  }
-  
-  .close-dialog:hover {
-    color: #ff7a00;
-  }
-  
-  .basket-dialog-items {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-   
-  }
-  
-  .basket-summary-mobile {
-    border-top: 1px solid #eee;
-    padding: 1rem;
-    background: #fff;
-    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  .basket-summary-mobile .row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.35rem;
-    color: #333;
-  }
-  
-  .basket-summary-mobile .row.total {
-    font-weight: 700;
-  }
-  
-  /* Button unten */
-  .btn-primary-mobile {
-    display: block;
-    width: 100%;
-    margin-top: 1rem;
-    padding: 0.9rem 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #ff7a00;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.25s ease, transform 0.15s ease;
-  }
-  
-  .btn-primary-mobile:hover,
-  .btn-primary-mobile:focus {
-    background-color: #e66d00;
-    transform: translateY(-1px);
-  }
-  
-  .basket-toggle {
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff7a00;
-    color: #fff;
-    font-weight: 600;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 50px;
-    box-shadow: 0 3px 12px rgba(255, 122, 0, 0.35);
-    cursor: pointer;
-    z-index: 1000;
-    transition: background 0.25s ease, transform 0.15s ease;
-  }
-  
-  .basket-toggle:hover {
-    background: #e66d00;
-    transform: translateX(-50%) translateY(-2px);
-  }
-  
-  .basket-toggle:active {
-    transform: translateX(-50%) scale(0.97);
-  }
-  
-  @media (max-width: 1020px) {
-    .basket {
-      display: none;
-    }
-  
-    .basket-wrapper {
-      display: none;
-    }
-   .basket-dialog {
-      display: none;
-    }
-  
-    .basket-dialog:not([hidden]) {
-      display: flex;
-    }
-  
-    .basket-toggle {
-      display: flex;
-    }
-  }
-  
-  @media (min-width: 1021px) {
-    .basket-dialog,
-    .basket-toggle {
-      display: none !important; 
-    }
-  
-    .basket {
-      display: flex;
-    }
-  }
-  
-  .basket-dialog[hidden] {
-    display: none;
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .basket-dialog {
-    opacity: 0;
-    animation: fadeInOverlay 0.3s ease forwards;
-  }
-  
-  @keyframes fadeInOverlay {
-    from {
-      opacity: 0;
-      backdrop-filter: blur(0px);
-    }
-    to {
-      opacity: 1;
-      backdrop-filter: blur(3px);
-    }
-  }
-  
-  .basket-dialog-content {
-    transform: translateY(100%);
-    animation: slideSnap 0.45s cubic-bezier(0.22, 1.05, 0.36, 1) forwards;
-    will-change: transform;
-  }
-  
-  @keyframes slideSnap {
-    0% {
-      transform: translateY(100%);
-    }
-    70% {
-      transform: translateY(-4%);
-    }
-    100% {
-      transform: translateY(0%);
-    }
-  }
-  
-  .basket-dialog.closing .basket-dialog-content {
-    animation: slideDown 0.3s ease forwards;
-  }
-  
-  @keyframes slideDown {
-    from {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-  }
-  
-  .basket-dialog-items .basket-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .basket-dialog-items .qty-ctrl {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .basket-dialog-items .qty-btn {
-    background: #fff;
-    border: 1px solid #ddd;
-    color: #333;
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .basket-dialog-items .qty-btn:hover {
-    background-color: #ff7a00;
-    color: #fff;
-    border-color: #ff7a00;
-  }
-  
-  .basket-dialog-items .trash-btn {
-    background: none;
-    border: none;
-    color: #ff7a00;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: transform 0.15s ease, color 0.2s ease;
-  }
-  
-  .basket-dialog-items .trash-btn:hover {
-    color: #e66d00;
-    transform: scale(1.15);
-  }
-  .basket {
-    width: 300px; 
-  }
-  
-  @media (min-width: 1200px) {
-    .basket { width: 320px; }
-  }
-  
-  @media (min-width: 1400px) {
-    .basket { width: 340px; }
-  }
-  
-  @media (min-width: 1600px) {
-    .basket { width: 360px; }
-  }
-  
-  @media (min-width: 1920px) {
-    .basket { width: 380px; }
-  }
-  
-  @media (max-width: 1020px) {
-    .basket {
-      display: none;
-    }
-  }
-  
-  @media (min-width: 1021px) {
-    .basket-dialog,
-    .basket-toggle {
-      display: none !important;
-    }
-  }
-  .basket::-webkit-scrollbar {
-    width: 6px;
-  }
-  .basket::-webkit-scrollbar-thumb {
-    background: #c76320; 
-    border-radius: 4px;
-  }
+    position: relative;
+    right: 15px;
+  } 
+
+} 

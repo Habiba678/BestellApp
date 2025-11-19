@@ -1,50 +1,231 @@
 :root{
-    --brand: #ff7a00;
-    --brand-700:#d66600;
-    --bg:#ffffff;
-    --text:#1f1f1f;
-    --muted:#666;
-    --card:#f7f7f7;
-    --line:#e6e6e6;
-    --success:#1f7a1f;
-  }
+  --brand: #ff7a00;
+  --brand-700:#d66600;
+  --bg:#ffffff;
+  --text:#1f1f1f;
+  --muted:#666;
+  --card:#f7f7f7;
+  --line:#e6e6e6;
+  --success:#1f7a1f;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.4;
   
-  *{box-sizing:border-box}
-  
-  body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color:var(--text);
-    background:var(--bg);
-    line-height:1.4;
+}
+
+/* Fokus sichtbar */
+:focus-visible{
+  outline:3px solid #0a84ff;
+  outline-offset:2px;
+  border-radius:4px;
+}
+
+/* Skip link */
+.pn-skip-link{
+  position:absolute;
+  left:-9999px;
+  top:auto;
+}
+.pn-skip-link:focus{
+  left:1rem;
+  top:1rem;
+  z-index:1000;
+  background:#0a84ff;
+  color:#fff;
+  padding:.5rem .75rem;
+  border-radius:.5rem;
+  text-decoration:none;
+}
+
+/* Buttons */
+.pn-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.7rem 1rem;
+  border:0;
+  border-radius:.5rem;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.pn-btn-primary{
+  background:var(--brand);
+  color:#fff;
+}
+.pn-btn-primary:hover{
+  background:var(--brand-700);
+}
+
+/* Visually hidden */
+.pn-visually-hidden{
+  position:absolute !important;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  border:0;
+  padding:0;
+}
+
+.pn-muted{
+  color:var(--muted);
+}
+
+/* Rows (z. B. im Warenkorb) */
+.pn-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+}
+
+/* Icon Buttons */
+.pn-icon-btn{
+  background:transparent;
+  border:0;
+  font-size:1.25rem;
+  cursor:pointer;
+}
+
+
+/* Leerer Warenkorb – Text hübsch zentriert */
+.basket-empty,
+.basket-empty-mobile {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #777;
+  padding: 2.5rem 1rem;
+}
+
+
+
+@media (min-width: 1021px) {
+  .pn-basket-empty-btn {
+    width: 90%;
+    max-width: 340px;
+    padding: 1.2rem 1.6rem;
+    font-size: 1.2rem;
+    border-radius: 18px;
+    background: #dedede;
+    color: #555;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.15);
+    margin: 2rem auto;
+    text-align: center;
   }
-  
-  :focus-visible{
-    outline:3px solid #0a84ff;
-    outline-offset:2px;
-    border-radius:4px;
+}
+
+
+/* =======================================
+   ⭐ Leerer Warenkorb – Button nur DESKTOP
+   ======================================= */
+   @media (min-width: 1021px) {
+    /* nur im rechten Desktop-Warenkorb, nicht im Dialog */
+    .pn-basket button[disabled] {
+      display: block;
+      margin: 1.2rem auto 0;          
+      max-width: 320px;        
+      padding: 0.9rem 9rem;  
+      font-size: 20px;
+      text-align: center;
+      width: calc(100% - 2rem);        
+      border-radius: 6px;
+      position: relative;
+      right:  20px;
+      
+    }
+
+}
+/* ====================================
+   Footer – zentriert & responsive
+==================================== */
+
+.pn-app-footer {
+  width: 100%;
+  background: #1e1e2f;
+  color: #fff;
+  padding: 18px 6%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 0;
+}
+
+/* Logo */
+.footer-logo {
+  width: 40px;
+  height: 40px;
+  opacity: 0.9;
+}
+
+/* Name */
+.footer-app-name {
+  font-weight: 600;
+  font-size: 22px;
+  opacity: 0.95;
+}
+
+/* Links */
+.footer-right {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-right a {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.pn-app-footer span {
+  font-size: 28px;
+  position: relative;
+  top: -10px;
+}
+
+.footer-right a:hover {
+  opacity: 1;
+  color: #ff7a00;
+}
+
+/* ==========================================
+   RESPONSIVE FIX — kein Weiß ab 1194px!
+========================================== */
+@media (max-width: 1194px) {
+  .pn-app-footer {
+    width: 100%;
+    padding: 1rem 0.5rem;    /* WENIGER padding = kein Weiß rechts */
   }
-  
-  .skip-link{
-    position:absolute; left:-9999px; top:auto;
+
+  .footer-right {
+    gap: 0.4rem;             /* etwas enger */
+    font-size: 15px;
   }
-  .skip-link:focus{
-    left:1rem; top:1rem; z-index:1000;
-    background:#0a84ff; color:#fff; padding:.5rem .75rem; border-radius:.5rem;
-    text-decoration:none;
+
+  .footer-app-name {
+    font-size: 20px;
   }
-  
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:.7rem 1rem; border:0; border-radius:.5rem; cursor:pointer;
-    font-weight:600;
+}
+
+/* Footer auf Mobile ausblenden */
+@media (max-width: 1020px) {
+  .pn-app-footer {
+    display: none !important;
   }
-  .btn-primary{ background:var(--brand); color:#fff; }
-  .btn-primary:hover{ background:var(--brand-700); }
-  
-  .visually-hidden{
-    position:absolute !important; width:1px;height:1px; margin:-1px;overflow:hidden; clip:rect(0 0 0 0); border:0; padding:0;
-  }
-  .muted{ color:var(--muted); }
-  .row{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
-  .icon-btn{ background:transparent; border:0; font-size:1.25rem; cursor:pointer; }
+}
