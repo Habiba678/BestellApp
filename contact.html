@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – BestellApp</title>
+  <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
+  <style>
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Seite füllt Höhe → Footer unten */
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: "Raleway", sans-serif;
+      background: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* HEADER – gleich wie Impressum */
+    .pn-app-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 7%;
+      background: #ff7a00;
+      color: #fff;
+      position: relative;
+      z-index: 10;
+      padding-left: 60px; /* leicht nach rechts wie Impressum */
+    }
+
+    .pn-brand {
+      height: 45px;
+      width: auto;
+    }
+
+    /* DESKTOP-NAVIGATION im Header */
+    .pn-header-nav {
+      display: none; /* nur auf großem Screen sichtbar */
+    }
+
+    .pn-header-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pn-header-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .pn-header-nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* BURGER (Mobile) */
+    .pn-menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      position: relative;
+      display: block;
+    }
+
+    .pn-menu-icon,
+    .pn-menu-icon::before,
+    .pn-menu-icon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 22px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transform: translateX(-50%);
+    }
+
+    .pn-menu-icon::before { top: -7px; }
+    .pn-menu-icon::after  { top: 7px; }
+
+    /* Desktop: Burger aus, Text-Menü an */
+    @media (min-width: 900px) {
+      .pn-menu-toggle { 
+        display: none; 
+      }
+
+      .pn-header-nav {
+        display: block;
+      }
+    }
+
+    /* FULLSCREEN MENU (Mobile) */
+    .fullscreen-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 122, 0, 0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      z-index: 9999;
+    }
+
+    .fullscreen-menu.open { 
+      display: flex; 
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 34px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .fullscreen-menu ul {
+      list-style: none;
+      width: 80%;
+      max-width: 380px;
+    }
+
+    .fullscreen-menu li {
+      text-align: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .fullscreen-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* MAIN – genau wie Impressum */
+    main {
+      max-width: 700px;
+      margin: 120px 20px 40px 120px;
+      padding: 0 10px;
+      line-height: 1.6;
+    }
+
+    main h1 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    main h2 {
+      margin-top: 28px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    main p {
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        margin: 40px 20px 40px 40px;
+      }
+    }
+
+    /* FOOTER – 1:1 wie Impressum */
+    .pn-app-footer {
+      width: 100%;
+      background: #1e1e2f;
+      color: #fff;
+      padding: 18px 6%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 0;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      opacity: 0.9;
+    }
+
+    .footer-app-name {
+      font-weight: 600;
+      font-size: 22px;
+      opacity: 0.95;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-right a {
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: 0.25s;
+    }
+
+    .footer-right a:hover {
+      opacity: 1;
+      color: #ff7a00;
+    }
+
+    @media (max-width: 768px) {
+      .footer-right {
+        font-size: 16px;
+        flex-direction: column;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="pn-app-header">
+  <div class="pn-app-bar">
+    <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
+
+    <!-- DESKTOP-TEXT-MENÜ -->
+    <nav class="pn-header-nav">
+      <ul>
+        <li><a href="index.html">Menü</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </nav>
+
+    <!-- BURGER (nur Mobile/Tablet) -->
+    <button class="pn-menu-toggle" aria-label="Menü öffnen">
+      <span class="pn-menu-icon"></span>
+    </button>
+  </div>
+</header>
+
+<!-- FULLSCREEN MENU -->
+<nav class="fullscreen-menu" id="fullscreenMenu">
+  <div class="close-menu" id="closeMenu">×</div>
+  <ul>
+    <li><a href="index.html">Menü</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="contact.html">Kontakt</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+  </ul>
+</nav>
+
+<!-- KONTAKT-INHALT -->
+<main>
+  <h1>Kontakt</h1>
+
+  <h2>Kontaktinformationen</h2>
+  <p>
+    Habiba Mohamed<br>
+    An der Walkenmühle 20<br>
+    33607 Bielefeld<br><br>
+    Telefon: 017632340703<br>
+    E-Mail: hananhussain12@hotmail.com
+  </p>
+
+  <h2>Lieferzeiten</h2>
+  <p>
+    Montag: geschlossen<br>
+    Dienstag – Sonntag: 16:00 – 23:00 Uhr
+  </p>
+</main>
+
+<!-- FOOTER -->
+<footer class="pn-app-footer">
+  <div class="footer-top">
+    <img src="assets/img/Material/Favicon/apple-touch-icon.png"
+         class="footer-logo"
+         alt="Logo" />
+    <span class="footer-app-name">BestellApp</span>
+  </div>
+
+  <div class="footer-right">
+    <a href="index.html">Menü</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="contact.html">Kontakt</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+  const burgerBtn = document.querySelector(".pn-menu-toggle");
+  const fullMenu = document.getElementById("fullscreenMenu");
+  const closeBtn = document.getElementById("closeMenu");
+
+  if (burgerBtn && fullMenu && closeBtn) {
+    burgerBtn.addEventListener("click", () => {
+      fullMenu.classList.add("open");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      fullMenu.classList.remove("open");
+    });
+
+    fullMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        fullMenu.classList.remove("open");
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

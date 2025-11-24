@@ -6,7 +6,7 @@
   --muted:#666;
   --card:#f7f7f7;
   --line:#e6e6e6;
-  --success:#1f7a1f;
+ 
 }
 
 *{
@@ -24,7 +24,7 @@ body{
 
 /* Fokus sichtbar */
 :focus-visible{
-  outline:3px solid #0a84ff;
+  outline:3px solid #d66600;
   outline-offset:2px;
   border-radius:4px;
 }
@@ -39,7 +39,7 @@ body{
   left:1rem;
   top:1rem;
   z-index:1000;
-  background:#0a84ff;
+  background:#ff7a00;
   color:#fff;
   padding:.5rem .75rem;
   border-radius:.5rem;
@@ -66,7 +66,7 @@ body{
   background:var(--brand-700);
 }
 
-/* Visually hidden */
+
 .pn-visually-hidden{
   position:absolute !important;
   width:1px;
@@ -82,7 +82,7 @@ body{
   color:var(--muted);
 }
 
-/* Rows (z. B. im Warenkorb) */
+
 .pn-row{
   display:flex;
   align-items:center;
@@ -90,7 +90,7 @@ body{
   gap:.75rem;
 }
 
-/* Icon Buttons */
+
 .pn-icon-btn{
   background:transparent;
   border:0;
@@ -98,8 +98,6 @@ body{
   cursor:pointer;
 }
 
-
-/* Leerer Warenkorb – Text hübsch zentriert */
 .basket-empty,
 .basket-empty-mobile {
   text-align: center;
@@ -126,9 +124,6 @@ body{
 }
 
 
-/* =======================================
-   ⭐ Leerer Warenkorb – Button nur DESKTOP
-   ======================================= */
    @media (min-width: 1021px) {
     /* nur im rechten Desktop-Warenkorb, nicht im Dialog */
     .pn-basket button[disabled] {
@@ -145,87 +140,4 @@ body{
       
     }
 
-}
-/* ====================================
-   Footer – zentriert & responsive
-==================================== */
-
-.pn-app-footer {
-  width: 100%;
-  background: #1e1e2f;
-  color: #fff;
-  padding: 18px 6%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-  margin: 0;
-}
-
-/* Logo */
-.footer-logo {
-  width: 40px;
-  height: 40px;
-  opacity: 0.9;
-}
-
-/* Name */
-.footer-app-name {
-  font-weight: 600;
-  font-size: 22px;
-  opacity: 0.95;
-}
-
-/* Links */
-.footer-right {
-  display: flex;
-  gap: 0.6rem;
-  font-size: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.footer-right a {
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.85;
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-
-.pn-app-footer span {
-  font-size: 28px;
-  position: relative;
-  top: -10px;
-}
-
-.footer-right a:hover {
-  opacity: 1;
-  color: #ff7a00;
-}
-
-/* ==========================================
-   RESPONSIVE FIX — kein Weiß ab 1194px!
-========================================== */
-@media (max-width: 1194px) {
-  .pn-app-footer {
-    width: 100%;
-    padding: 1rem 0.5rem;    /* WENIGER padding = kein Weiß rechts */
-  }
-
-  .footer-right {
-    gap: 0.4rem;             /* etwas enger */
-    font-size: 15px;
-  }
-
-  .footer-app-name {
-    font-size: 20px;
-  }
-}
-
-/* Footer auf Mobile ausblenden */
-@media (max-width: 1020px) {
-  .pn-app-footer {
-    display: none !important;
-  }
 }

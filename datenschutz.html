@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutz – BestellApp</title>
+  <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
+   
+  <style>
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;          
+      background: #f5f5f5;
+      color: #222;
+      overflow-x: hidden;
+      font-family: "Raleway", sans-serif;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* HEADER – wie bei Impressum/Kontakt */
+    .pn-app-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 7%;
+      background: #ff7a00;
+      color: #fff;
+      position: relative;
+      z-index: 10;
+    }
+
+    .pn-brand {
+      height: 45px;
+      width: auto;
+    }
+
+    /* DESKTOP-NAVIGATION im Header */
+    .pn-header-nav {
+      display: none;
+    }
+
+    .pn-header-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pn-header-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .pn-header-nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* BURGER (Mobile) */
+    .pn-menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      position: relative;
+      display: block;
+    }
+
+    .pn-menu-icon,
+    .pn-menu-icon::before,
+    .pn-menu-icon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 22px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transform: translateX(-50%);
+    }
+
+    .pn-menu-icon::before { top: -7px; }
+    .pn-menu-icon::after  { top: 7px; }
+
+    /* Desktop: Burger aus, Text-Menü an */
+    @media (min-width: 900px) {
+      .pn-menu-toggle { 
+        display: none; 
+      }
+
+      .pn-header-nav {
+        display: block;
+      }
+    }
+
+    /* FULLSCREEN MENU (Mobile) */
+    .fullscreen-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 122, 0, 0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      z-index: 9999;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .fullscreen-menu.open { 
+      display: flex; 
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 34px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .fullscreen-menu ul {
+      list-style: none;
+      width: 80%;
+      max-width: 380px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .fullscreen-menu li {
+      text-align: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .fullscreen-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* MAIN – zentriert, ohne Horizontal-Scroll */
+    main {
+      max-width: 900px;
+      width: 100%;
+      margin: 100px auto 40px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+      font-family: "Raleway", sans-serif;
+    }
+
+    main h1 {
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
+
+    main h2 {
+      font-size: 24px;
+      margin-top: 26px;
+      margin-bottom: 10px;
+    }
+
+    main h3 {
+      font-size: 20px;
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+
+    main h4 {
+      font-size: 18px;
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    main p {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    main ul {
+      margin: 0 0 12px 20px;
+      padding-left: 0;
+      font-size: 16px;
+    }
+
+    main li {
+      margin-bottom: 6px;
+    }
+
+    main a {
+      color: #ff7a00;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    main a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        margin: 80px auto 30px auto;
+        padding: 0 14px;
+      }
+
+      main h1 { font-size: 26px; }
+      main h2 { font-size: 21px; }
+      main h3 { font-size: 18px; }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        margin: 70px auto 24px auto;
+        padding: 0 12px;
+      }
+
+      main h1 { font-size: 22px; }
+      main h2 { font-size: 19px; }
+      main h3 { font-size: 17px; }
+      main p  { font-size: 15px; }
+    }
+
+    /* FOOTER – wie bei Impressum/Kontakt */
+    .pn-app-footer {
+      width: 100%;
+      background: #1e1e2f;
+      color: #fff;
+      padding: 18px 6%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 0;
+      font-family: "Raleway", sans-serif;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      opacity: 0.9;
+    }
+
+    .footer-app-name {
+      font-weight: 600;
+      font-family: "Raleway", sans-serif;
+      font-size: 22px;
+      opacity: 0.95;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-right a {
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: 0.25s;
+    }
+
+    .footer-right a:hover {
+      opacity: 1;
+      color: #ff7a00;
+    }
+
+    @media (max-width: 768px) {
+      .footer-right {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="pn-app-header">
+    <div class="pn-app-bar">
+      <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
+
+      <!-- DESKTOP-TEXT-MENÜ -->
+      <nav class="pn-header-nav">
+        <ul>
+          <li><a href="index.html">Menü</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+         
+        </ul>
+      </nav>
+
+      <!-- BURGER (nur Mobile/Tablet) -->
+      <button class="pn-menu-toggle" aria-label="Menü öffnen">
+        <span class="pn-menu-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- FULLSCREEN MENU -->
+  <nav class="fullscreen-menu" id="fullscreenMenu">
+    <div class="close-menu" id="closeMenu">×</div>
+    <ul>
+      <li><a href="index.html">Menü</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+     
+    </ul>
+  </nav>
+
+  <!-- INHALT DATENSCHUTZ -->
+  <main>
+    <h1>Datenschutzerklärung</h1>
+    <p>
+      Der Schutz Ihrer persönlichen Daten ist uns sehr wichtig. Wir behandeln
+      Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen
+      Datenschutzvorschriften.
+    </p>
+
+    <h2>1. Allgemeine Hinweise</h2>
+    <h3>Allgemeine Hinweise</h3>
+    <p>
+      Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren
+      personenbezogenen Daten passiert, wenn Sie diese Website besuchen.
+      Personenbezogene Daten sind alle Daten, mit denen Sie persönlich
+      identifiziert werden können. Ausführliche Informationen zum Thema
+      Datenschutz entnehmen Sie dieser Datenschutzerklärung.
+    </p>
+
+    <h3>Datenerfassung auf dieser Website</h3>
+
+    <h4>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
+    <p>
+      Die Datenverarbeitung auf dieser Website erfolgt durch die Websitebetreiberin.
+      Die Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle“
+      in dieser Datenschutzerklärung entnehmen.
+    </p>
+
+    <h4>Wie erfassen wir Ihre Daten?</h4>
+    <p>
+      Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen.
+      Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular
+      eingeben.
+    </p>
+    <p>
+      Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch
+      der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische
+      Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).
+      Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website
+      betreten.
+    </p>
+
+    <h4>Wofür nutzen wir Ihre Daten?</h4>
+    <p>
+      Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website
+      zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens
+      verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt
+      werden können, werden die übermittelten Daten auch für Vertragsangebote,
+      Bestellungen oder sonstige Auftragsanfragen verarbeitet.
+    </p>
+
+    <h4>Welche Rechte haben Sie bezüglich Ihrer Daten?</h4>
+    <p>
+      Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger
+      und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben
+      außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.
+      Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie
+      diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie
+      das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer
+      personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein
+      Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+    </p>
+    <p>
+      Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit
+      an uns wenden.
+    </p>
+
+    <h3>Analyse-Tools und Tools von Drittanbietern</h3>
+    <p>
+      Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet
+      werden. Das geschieht vor allem mit sogenannten Analyseprogrammen.
+    </p>
+    <p>
+      Detaillierte Informationen zu diesen Analyseprogrammen finden Sie in den
+      folgenden Abschnitten dieser Datenschutzerklärung.
+    </p>
+
+    <h2>2. Hosting</h2>
+    <p>
+      Wir hosten die Inhalte unserer Website bei einem externen Dienstleister
+      (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden,
+      werden auf den Servern des Hosters gespeichert. Dabei kann es sich v. a. um
+      IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten,
+      Kontaktdaten, Namen, Websitezugriffe und sonstige Daten handeln, die über
+      eine Website generiert werden.
+    </p>
+    <p>
+      Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren
+      potenziellen und bestehenden Kundinnen und Kunden (Art. 6 Abs. 1 lit. b DSGVO)
+      und im Interesse einer sicheren, schnellen und effizienten Bereitstellung
+      unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1
+      lit. f DSGVO). Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt
+      die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO
+      und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies
+      oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B.
+      Device-Fingerprinting) umfasst. Die Einwilligung ist jederzeit widerrufbar.
+    </p>
+    <p>
+      Unser Hoster wird Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung
+      seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf
+      diese Daten befolgen.
+    </p>
+
+    <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
+
+    <h3>Datenschutz</h3>
+    <p>
+      Die Betreiberin dieser Seiten nimmt den Schutz Ihrer persönlichen Daten sehr
+      ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend
+      den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+    </p>
+    <p>
+      Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten
+      erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich
+      identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert,
+      welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie
+      und zu welchem Zweck das geschieht.
+    </p>
+    <p>
+      Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der
+      Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser
+      Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+    </p>
+
+    <h3>Hinweis zur verantwortlichen Stelle</h3>
+    <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+    <p>
+      Habiba Mohamed<br>
+      An der Walkenmühle 20<br>
+      33607 Bielefeld
+    </p>
+    <p>
+      Telefon: 0176&nbsp;32340703<br>
+      E-Mail: hananhussain12@hotmail.com
+    </p>
+    <p>
+      Verantwortliche Stelle ist die natürliche oder juristische Person, die allein
+      oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von
+      personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o.Ä.) entscheidet.
+    </p>
+
+    <h3>Speicherdauer</h3>
+    <p>
+      Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer
+      genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck
+      für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen
+      geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen,
+      werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen
+      Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer-
+      oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt
+      die Löschung nach Fortfall dieser Gründe.
+    </p>
+
+    <h3>Allgemeine Hinweise zu den Rechtsgrundlagen</h3>
+    <p>
+      Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre
+      personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw.
+      Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9
+      Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung
+      in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die
+      Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO.
+      Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen
+      in Ihr Endgerät (z. B. Device-Fingerprinting) eingewilligt haben, erfolgt die
+      Verarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TDDDG. Die Einwilligung
+      ist jederzeit widerrufbar.
+    </p>
+    <p>
+      Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher
+      Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage von Art. 6
+      Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese
+      zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind, auf Grundlage
+      von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf
+      Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO
+      erfolgen.
+    </p>
+
+    <h3>Empfänger von personenbezogenen Daten</h3>
+    <p>
+      Im Rahmen unserer Geschäftstätigkeit arbeiten wir mit verschiedenen externen
+      Stellen zusammen. Dabei ist teilweise auch eine Übermittlung von
+      personenbezogenen Daten an diese externen Stellen erforderlich. Wir geben
+      personenbezogene Daten nur dann an externe Stellen weiter, wenn dies im
+      Rahmen einer Vertragserfüllung erforderlich ist, wenn wir gesetzlich hierzu
+      verpflichtet sind (z. B. Weitergabe von Daten an Steuerbehörden), wenn wir
+      ein berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO an der Weitergabe
+      haben oder wenn eine sonstige Rechtsgrundlage die Datenweitergabe erlaubt.
+    </p>
+
+    <h3>Widerruf Ihrer Einwilligung</h3>
+    <p>
+      Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung
+      möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen.
+      Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt
+      vom Widerruf unberührt.
+    </p>
+
+    <h3>Beschwerderecht bei der Aufsichtsbehörde</h3>
+    <p>
+      Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht
+      bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres
+      gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen
+      Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger
+      verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.
+    </p>
+
+    <h3>Recht auf Datenübertragbarkeit</h3>
+    <p>
+      Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in
+      Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen
+      Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.
+      Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen
+      verlangen, erfolgt dies nur, soweit es technisch machbar ist.
+    </p>
+
+    <h3>Auskunft, Berichtigung und Löschung</h3>
+    <p>
+      Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das
+      Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen
+      Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und
+      ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu
+      weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit
+      an uns wenden.
+    </p>
+
+    <h3>Recht auf Einschränkung der Verarbeitung</h3>
+    <p>
+      Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen
+      Daten zu verlangen. Das Recht auf Einschränkung der Verarbeitung besteht
+      insbesondere in folgenden Fällen:
+    </p>
+    <ul>
+      <li>
+        Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten
+        bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die
+        Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung
+        Ihrer personenbezogenen Daten zu verlangen.
+      </li>
+      <li>
+        Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/
+        geschieht, können Sie statt der Löschung die Einschränkung der
+        Datenverarbeitung verlangen.
+      </li>
+      <li>
+        Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch
+        zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen
+        benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der
+        Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
+      </li>
+      <li>
+        Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss
+        eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden.
+        Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das
+        Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu
+        verlangen.
+      </li>
+    </ul>
+    <p>
+      Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben,
+      dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer
+      Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von
+      Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder
+      juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses
+      der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.
+    </p>
+
+    <h2>4. Datenerfassung auf dieser Website</h2>
+
+    <h3>Cookies</h3>
+    <p>
+      Unsere Internetseiten verwenden sogenannte „Cookies“. Cookies sind kleine
+      Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden
+      entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder
+      dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert.
+      Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht.
+      Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese
+      selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.
+    </p>
+    <p>
+      Cookies können von uns (First-Party-Cookies) oder von Drittunternehmen
+      stammen (sog. Third-Party-Cookies). Third-Party-Cookies ermöglichen die
+      Einbindung bestimmter Dienstleistungen von Drittunternehmen innerhalb von
+      Webseiten (z. B. Cookies zur Abwicklung von Zahlungsdienstleistungen).
+    </p>
+    <p>
+      Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch
+      notwendig, da bestimmte Webseitenfunktionen ohne diese nicht funktionieren
+      würden (z. B. die Warenkorbfunktion oder die Anzeige von Videos). Andere
+      Cookies können zur Auswertung des Nutzerverhaltens oder zu Werbezwecken
+      verwendet werden.
+    </p>
+    <p>
+      Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs, zur
+      Bereitstellung bestimmter von Ihnen erwünschter Funktionen oder zur
+      Optimierung der Website (z. B. Cookies zur Messung des Webpublikums)
+      erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO
+      gespeichert, sofern keine andere Rechtsgrundlage angegeben wird. Die
+      Websitebetreiberin hat ein berechtigtes Interesse an der Speicherung von
+      notwendigen Cookies zur technisch fehlerfreien und optimierten Bereitstellung
+      ihrer Dienste. Sofern eine Einwilligung zur Speicherung von Cookies und
+      vergleichbaren Wiedererkennungstechnologien abgefragt wurde, erfolgt die
+      Verarbeitung ausschließlich auf Grundlage dieser Einwilligung; die Einwilligung
+      ist jederzeit widerrufbar.
+    </p>
+    <p>
+      Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies
+      informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von
+      Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische
+      Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der
+      Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt
+      sein.
+    </p>
+
+    <h2>5. Plugins und Tools</h2>
+    <h3>Google Fonts (lokales Hosting)</h3>
+    <p>
+      Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte
+      Google Fonts, die von Google bereitgestellt werden. Die Google Fonts sind
+      lokal installiert. Eine Verbindung zu Servern von Google findet dabei nicht
+      statt.
+    </p>
+    <p>
+      Weitere Informationen zu Google Fonts finden Sie unter
+      <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener noreferrer">
+        https://developers.google.com/fonts/faq
+      </a>
+      und in der Datenschutzerklärung von Google:
+      <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">
+        https://policies.google.com/privacy?hl=de
+      </a>.
+    </p>
+
+    <p>
+      Quelle (Textbasis): 
+      <a href="https://www.e-recht24.de" target="_blank" rel="noopener noreferrer">
+        https://www.e-recht24.de
+      </a>
+    </p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="pn-app-footer">
+    <div class="footer-top">
+      <img
+        src="assets/img/Material/Favicon/apple-touch-icon.png"
+        class="footer-logo"
+        alt="Logo"
+      />
+      <span class="footer-app-name">BestellApp</span>
+    </div>
+
+    <div class="footer-right">
+      <a href="index.html">Menü</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="contact.html">Kontakt</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <!-- JS – Burger-Menü -->
+  <script>
+    const burgerBtn = document.querySelector(".pn-menu-toggle");
+    const fullMenu  = document.getElementById("fullscreenMenu");
+    const closeBtn  = document.getElementById("closeMenu");
+
+    if (burgerBtn && fullMenu && closeBtn) {
+      burgerBtn.addEventListener("click", () => {
+        fullMenu.classList.add("open");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        fullMenu.classList.remove("open");
+      });
+
+      fullMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          fullMenu.classList.remove("open");
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

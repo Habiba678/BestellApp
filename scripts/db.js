@@ -131,11 +131,11 @@ let menu = [
           price: 2.8
         },
         {
-          name: "Espresso",
+          name: "Fanta 0,5 l",
           price: 2.2
         },
         {
-          name: "Cappuccino",
+          name: "Sprita 0,5 l",
           price: 3.0
         }
       ]

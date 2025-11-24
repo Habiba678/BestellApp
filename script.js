@@ -1,37 +1,27 @@
-// ==============================
-// DATA & STATE -----------------
-// ==============================
-
-// Warenkorb-Daten
-let cart = []; // { name, price, quantity }
-let currentCategory = 0; // aktive Kategorie (für Tabs)
+let cart = []; 
+let currentCategory = 0; 
 
 // Lieferkosten
-const DELIVERY_COST = 3.50;
+const DELIVERY_COST = 2.50;
 
 // Kategorie-Bilder (optional)
 const categoryImages = {
   "Hauptgerichte": 'assets/img/pizza.jpg',
   "Beilagen":      'assets/img/beilage.jpg',
-  "Salate":        'assets/img/getränk.jpg',
-  "Nachspeisen":   'assets/img/salad.jpg',
-  "Getränke":      'assets/img/salad.jpg',
+  "Getränke":      'assets/img/getränk.jpg',
 };
 
 
-// ==============================
-// DOM ELEMENTS -----------------
-// ==============================
 
-// Menü / Kategorien
+/* Menü / Kategorien */
 let menuContainer      = document.getElementById('menu');
 let tabButtons         = document.querySelectorAll('.pn-tab-btn');
 
-// Burger-Menü im Header
+
 let menuToggle         = document.querySelector('.pn-menu-toggle');
 let navMenu            = document.getElementById('navMenu');
 
-// Desktop-Warenkorb
+
 let basketItemsDesktop = document.getElementById('basketItems');
 let subTotalDesktop    = document.getElementById('subTotal');
 let deliveryDesktop    = document.getElementById('delivery');
@@ -39,87 +29,75 @@ let grandTotalDesktop  = document.getElementById('grandTotal');
 let checkoutBtn        = document.getElementById('checkoutBtn');
 let orderMsg           = document.getElementById('orderMsg');
 
-// 🔹 Leer-Zustand / Summary Desktop
+
 let emptyDesktop       = document.getElementById('basketEmptyDesktop');
 let basketSummaryDesk  = document.querySelector('.pn-basket-summary');
 
-// Mobiler Warenkorb
+
 let basketItemsMobile  = document.getElementById('basketItemsMobile');
 let subTotalMobile     = document.getElementById('subTotalM');
 let deliveryMobile     = document.getElementById('deliveryM');
 let grandTotalMobile   = document.getElementById('grandTotalM');
 let checkoutBtnM       = document.getElementById('checkoutBtnM');
 
-// 🔹 Leer-Zustand / Summary Mobile
+
 let emptyMobile        = document.getElementById('basketEmptyMobile');
 let basketSummaryMob   = document.querySelector('.pn-basket-summary-mobile');
 
-// Mobile Warenkorb-Dialog
+
 let basketToggle       = document.getElementById('basketToggle');
 let basketDialog       = document.getElementById('basketDialog');
 let closeDialog        = document.getElementById('closeDialog');
 
-// Mini-Gesamtbetrag (Button unten)
+
 let miniTotalEl        = document.getElementById('miniTotal');
 
 
-// ==============================
-// INIT -------------------------
-// ==============================
+
+/* INIT */
+
 
 function init() {
-  // Menü anzeigen
+  
   showMenu();
-
-  // Warenkorb initial anzeigen (leer)
   updateCart();
-
-  // Tabs (Kategorien) aktivieren
   initTabs();
-
-  // Burger-Menü im Header aktivieren
   initBurgerMenu();
-
-  // Mobile Warenkorb-Dialog aktivieren
   initBasketDialog();
-
-  // Checkout-Buttons aktivieren
   initCheckout();
 }
 
 
-// ==============================
-// MENU RENDERING ---------------
-// ==============================
+
 
 function showMenu() {
   renderMenu(currentCategory);
 }
 
-// Zeigt alle Gerichte im Menü an
+
 function renderMenu(filterCategory = null) {
   if (!menuContainer) return;
 
   menuContainer.innerHTML = '';
 
   menu.forEach(category => {
-    // Wenn gefiltert wird und Kategorie passt nicht -> überspringen
+    
     if (filterCategory && category.category !== filterCategory) {
       return;
     }
 
-    // Kategorie-Container
+    
     let section = document.createElement('section');
     section.classList.add('pn-category-section');
 
-    // Bild der Kategorie
+    
     let img = document.createElement('img');
     img.src = categoryImages[category.category] || "";
     img.alt = category.category;
     img.classList.add('pn-category-image');
     section.appendChild(img);
 
-    // Titel
+    
     let categoryTitle = document.createElement('h3');
     categoryTitle.textContent = category.category;
     categoryTitle.classList.add('pn-category-title');
@@ -139,7 +117,7 @@ function renderMenu(filterCategory = null) {
         <button class="pn-add-btn" aria-label="Zu Warenkorb hinzufügen">+</button>
       `;
 
-      // Klick auf + (Gericht zum Warenkorb)
+      /* Klick auf + (Gericht zum Warenkorb) */
       let addBtn = dish.querySelector('.pn-add-btn');
       addBtn.addEventListener('click', () => {
         addToCart(item);
@@ -153,11 +131,8 @@ function renderMenu(filterCategory = null) {
 }
 
 
-// ==============================
-// CART LOGIC -------------------
-// ==============================
 
-// Fügt ein Gericht zum Warenkorb hinzu
+/* Fügt ein Gericht zum Warenkorb hinzu */
 function addToCart(item) {
   let existing = cart.find(entry => entry.name === item.name);
 
@@ -174,14 +149,14 @@ function addToCart(item) {
   updateCart();
 }
 
-// Steuert die Aktualisierung des Warenkorbs
+
 function updateCart() {
   renderCartDesktop();
   renderCartMobile();
+  updateCheckoutState();   
 }
 
 
-// ---------- GEMEINSAMES ITEM (Template) ----------
 
 function createBasketItem(entry, index) {
   const tpl = document.getElementById('basketItemTemplate');
@@ -229,7 +204,6 @@ function createBasketItem(entry, index) {
 }
 
 
-// ---------- DESKTOP ----------
 
 function renderCartDesktop() {
   if (!basketItemsDesktop) return;
@@ -237,7 +211,7 @@ function renderCartDesktop() {
   basketItemsDesktop.innerHTML = '';
 
   if (cart.length === 0) {
-    // 🔹 Leer-Zustand anzeigen
+    /* Leer-Zustand anzeigen */
     if (emptyDesktop) {
       emptyDesktop.style.display = 'flex';
     }
@@ -252,7 +226,7 @@ function renderCartDesktop() {
     return;
   }
 
-  // 🔹 Es gibt Artikel: Leerblock verstecken, Summary zeigen
+  
   if (emptyDesktop) emptyDesktop.style.display = 'none';
   if (basketSummaryDesk) basketSummaryDesk.style.display = 'block';
 
@@ -271,7 +245,6 @@ function renderCartDesktop() {
 }
 
 
-// ---------- MOBILE ----------
 
 function renderCartMobile() {
   if (!basketItemsMobile) return;
@@ -310,18 +283,59 @@ function renderCartMobile() {
 }
 
 
-// ==============================
-// HELPER -----------------------
-// ==============================
-
 function formatCurrency(value) {
   return value.toFixed(2).replace('.', ',') + ' €';
 }
 
+function isDrinkName(name) {
+  if (!window.menu) return false;
 
-// ==============================
-// TABS (KATEGORIEN) ------------
-// ==============================
+  for (const cat of menu) {
+    if (cat.category === 'Getränke') {
+      if (cat.items.some(item => item.name === name)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+
+function cartHasFood() {
+  return cart.some(entry => !isDrinkName(entry.name));
+}
+
+
+function cartHasOnlyDrinks() {
+  return cart.length > 0 && !cartHasFood();
+}
+
+/* Button-Status + Hinweis aktualisieren */
+function updateCheckoutState() {
+  const hasItems   = cart.length > 0;
+  const onlyDrinks = cartHasOnlyDrinks();
+
+  if (checkoutBtn) {
+    checkoutBtn.disabled = !hasItems || onlyDrinks;
+    checkoutBtn.classList.toggle('pn-btn-disabled', !hasItems || onlyDrinks);
+  }
+  if (checkoutBtnM) {
+    checkoutBtnM.disabled = !hasItems || onlyDrinks;
+    checkoutBtnM.classList.toggle('pn-btn-disabled', !hasItems || onlyDrinks);
+  }
+
+  if (!orderMsg) return;
+
+  if (!hasItems) {
+    orderMsg.textContent = 'Wähle leckere Gerichte und bestelle dein Menü.';
+  } else if (onlyDrinks) {
+    orderMsg.textContent = 'Getränke können nur zusammen mit Speisen bestellt werden.';
+  } else {
+    orderMsg.textContent = '';
+  }
+}
+
+
 
 function initTabs() {
   if (!tabButtons || tabButtons.length === 0) return;
@@ -340,9 +354,6 @@ function initTabs() {
 }
 
 
-// ==============================
-// BURGER MENÜ ------------------
-// ==============================
 
 function initBurgerMenu() {
   if (!menuToggle || !navMenu) return;
@@ -371,9 +382,6 @@ function initBurgerMenu() {
 }
 
 
-// ==============================
-// BASKET DIALOG (MOBILE) -------
-// ==============================
 
 function initBasketDialog() {
   if (!basketToggle || !basketDialog) return;
@@ -399,18 +407,30 @@ function initBasketDialog() {
 }
 
 
-// ==============================
-// CHECKOUT ---------------------
-// ==============================
+/* CHECKOUT */
+
 
 function initCheckout() {
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
+      // Falls der Button irgendwie doch klickbar ist:
       if (cart.length === 0) {
-        orderMsg.textContent = 'Bitte füge zuerst Artikel zum Warenkorb hinzu.';
+        if (orderMsg) {
+          orderMsg.textContent = 'Bitte füge zuerst Artikel zum Warenkorb hinzu.';
+        }
         return;
       }
-      orderMsg.textContent = 'Vielen Dank! Deine (Demo-)Bestellung wurde aufgenommen.';
+
+      if (cartHasOnlyDrinks()) {
+        if (orderMsg) {
+          orderMsg.textContent = 'Getränke können nur zusammen mit Speisen bestellt werden.';
+        }
+        return;
+      }
+
+      if (orderMsg) {
+        orderMsg.textContent = 'Vielen Dank! Deine (Demo-)Bestellung wurde aufgenommen.';
+      }
       resetCart();
     });
   }
@@ -421,6 +441,12 @@ function initCheckout() {
         alert('Bitte füge zuerst Artikel zum Warenkorb hinzu.');
         return;
       }
+
+      if (cartHasOnlyDrinks()) {
+        alert('Getränke können nur zusammen mit Speisen bestellt werden.');
+        return;
+      }
+
       alert('Vielen Dank! Deine (Demo-)Bestellung wurde aufgenommen.');
       resetCart();
     });
@@ -428,9 +454,6 @@ function initCheckout() {
 }
 
 
-// ==============================
-// RESET CART -------------------
-// ==============================
 
 function resetCart() {
   cart = [];
@@ -439,14 +462,71 @@ function resetCart() {
     miniTotalEl.textContent = formatCurrency(0);
   }
 
-  updateCart();
+  updateCart(); /* ruft auch updateCheckoutState() auf */
 }
 
 
-// ==============================
-// DOMCONTENTLOADED -------------
-// ==============================
+/* DOMCONTENTLOADED */
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
+});  
+
+
+// Scroll-Indicator updaten
+function updateScrollIndicator() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const scrollPercent = scrollTop / docHeight;
+
+  const bar = document.getElementById("scrollIndicatorBar");
+
+  // Höhe des Bars (wie groß das orange Stück ist)
+  const barHeight = 500; // Kannst du ändern!
+  bar.style.height = barHeight + "px";
+
+  // Position des Bars abhängig vom Scroll
+  bar.style.top = scrollPercent * (window.innerHeight - barHeight) + "px";
+}
+
+// Beim Scrollen aktualisieren
+window.addEventListener("scroll", updateScrollIndicator);
+window.addEventListener("resize", updateScrollIndicator);
+
+// Beim Laden direkt updaten
+updateScrollIndicator();
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const burgerBtn = document.querySelector('.pn-menu-toggle');
+  const navMenu   = document.getElementById('navMenu');
+  const closeMenu = document.getElementById('closeMenu');
+
+  if (!burgerBtn || !navMenu || !closeMenu) {
+    return; // wenn etwas fehlt, gar nichts machen
+  }
+
+  function openMenu() {
+    navMenu.classList.add('pn-open');
+    navMenu.setAttribute('aria-hidden', 'false');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenuFn() {
+    navMenu.classList.remove('pn-open');
+    navMenu.setAttribute('aria-hidden', 'true');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  
+  burgerBtn.addEventListener('click', openMenu);
+
+  // X klick -> schließen
+  closeMenu.addEventListener('click', closeMenuFn);
+
+  // Klick auf Link -> schließen
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenuFn);
+  });
 });

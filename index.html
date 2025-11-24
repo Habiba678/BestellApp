@@ -1,261 +1,315 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BestellApp</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#d4af37" />
+  <title>BestellApp</title>
 
-    <meta name="theme-color" content="#d4af37" />
+  <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/basket.css" />
+  <link rel="stylesheet" href="styles/standard.css" />
+  <link rel="stylesheet" href="styles/fonts.css" />
+  <link rel="stylesheet" href="styles/assets.css" />
+  <link rel="stylesheet" href="styles/footer.css" />
+</head>
 
-    <link rel="icon" href="assets/Favicon/favicon.ico" />
-    <link rel="apple-touch-icon" href="assets/Favicon/apple-touch-icon.png" />
+<body>
+  <div class="pn-page-wrapper">
+    <a class="pn-skip-link" href="#main">Zum Inhalt springen</a>
 
-    <!-- CSS-Dateien -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="sytles/basket.css" />
-    <link rel="stylesheet" href="sytles/standard.css" />
-  </head>
+    <!-- HEADER -->
+    <header class="pn-app-header">
+      <div class="pn-app-bar">
+        <img
+          src="assets/img/Logo.png"
+          alt="BestellApp Logo"
+          class="pn-brand"
+        />
 
-  <body>
-    <div class="pn-page-wrapper">
-      <a class="pn-skip-link" href="#main">Zum Inhalt springen</a>
-
-      <!-- HEADER -->
-      <header class="pn-app-header">
-        <div class="pn-app-bar">
-          <img
-            src="assets/Logo/Logo.png"
-            alt="BestellApp Logo"
-            class="pn-brand"
-          />
-
-          <button
-            class="pn-menu-toggle"
-            aria-label="Menü öffnen"
-            aria-expanded="false"
-            aria-controls="navMenu"
-          >
-            <span class="pn-menu-icon"></span>
-          </button>
-
-          <nav id="navMenu" class="pn-nav-menu" aria-hidden="true">
-            <ul>
-              <li><a href="#menu">Menü</a></li>
-              <li><a href="#basket">Warenkorb</a></li>
-              <li><a href="#about">Impressum</a></li>
-              <li><a href="#contact">Kontakt</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
-      <!-- CONTENT WRAPPER -->
-      <div class="pn-content-wrapper">
-        <!-- LEFT SIDE / MAIN -->
-        <div class="pn-main-stack">
-          <!-- Hero -->
-          <section
-            class="pn-hero-section"
-            aria-label="Restaurant Vorschau"
-          ></section>
-
-          <!-- Noodlebox Bild -->
-          <section class="pn-noodlebox-section">
-            <div class="pn-noodlebox-wrapper">
-              <img
-                src="assets/img/takeaway.png"
-                alt="Illustration einer Nudelbox"
-                class="pn-noodlebox-img"
-              />
-            </div>
-          </section>
-
-          <!-- RESTAURANT INFO -->
-          <section class="pn-restaurant-header">
-            <h2 id="restaurant-title">Paradise Noodles</h2>
-            <p class="pn-restaurant-meta">
-              <span aria-label="Bewertung">Bewertung</span>(4.2 von 5 Sternen)
-            </p>
-          </section>
-
-          <!-- TABS -->
-          <nav class="pn-category-tabs" aria-label="Kategorien">
-            <ul>
-              
-              <li class="pn-tab-btn" data-category="Hauptgerichte">
-                Hauptgerichte
-              </li>
-              <li class="pn-tab-btn" data-category="Beilagen">Beilagen</li>
-              <li class="pn-tab-btn" data-category="Getränke">Getränke</li>
-            </ul>
-          </nav>
-
-          <!-- Unteres Hero Bild -->
-          <section
-            class="pn-hero-section-lower"
-            aria-label="Unterer Bildabschnitt"
-          ></section>
-
-          <!-- MENU -->
-          <main id="main" class="pn-menu-area" role="main">
-            <section id="menu" class="pn-menu" aria-label="Gerichte"></section>
-          </main>
-        </div>
-
-        <!-- RIGHT SIDE / DESKTOP BASKET -->
-        <aside
-          id="basket"
-          class="pn-basket"
-          aria-labelledby="basket-title"
-          aria-live="polite"
+        <button
+          class="pn-menu-toggle"
+          aria-label="Menü öffnen"
+          aria-expanded="false"
+          aria-controls="navMenu"
         >
-          <h2 id="basket-title">Deine Bestellung</h2>
+          <span class="pn-menu-icon"></span>
+        </button>
 
-          <!-- 🔹 LEER-ZUSTAND DESKTOP -->
-          <div id="basketEmptyDesktop" class="pn-basket-empty">
-            <img
-              src="assets/img/cart.svg"
-              class="pn-basket-empty-icon"
-              alt=""
-            />
-            <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
-            <button class="pn-basket-empty-btn pn-empty-desktop" disabled>
-              Bestellen
-            </button>
-          </div>
-
-          <!-- Artikel-Liste DESKTOP -->
-          <div id="basketItems" class="pn-basket-items"></div>
-
-          <!-- SUMMENBEREICH DESKTOP -->
-          <div id="basketSummaryDesk" class="pn-basket-summary">
-            <div class="pn-row">
-              <span>Zwischensumme</span><span id="subTotal">0,00 €</span>
-            </div>
-            <div class="pn-row">
-              <span>Lieferkosten</span><span id="delivery">3,50 €</span>
-            </div>
-            <div class="pn-row pn-total">
-              <strong>Gesamt</strong
-              ><strong id="grandTotal">3,50 €</strong>
-            </div>
-            <button id="checkoutBtn" class="pn-btn pn-btn-primary">
-              Bestellen
-            </button>
-            <p id="orderMsg" class="pn-order-msg" role="status"></p>
-          </div>
-        </aside>
+        <nav id="navMenu" class="pn-nav-menu" aria-hidden="true">
+          <div class="close-menu" id="closeMenu">×</div>
+          <ul>
+            <li><a href="index.html">Menü</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+          </ul>
+        </nav>
       </div>
+    </header>
 
-      <!-- MOBILE BASKET DIALOG -->
-      <div id="basketDialog" class="pn-basket-dialog" hidden>
-        <div
-          class="pn-basket-dialog-content"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="basket-title-mobile"
-        >
-          <header class="pn-basket-dialog-header">
-            <h2 id="basket-title-mobile">Deine Bestellung</h2>
+    <div class="pn-content-wrapper">
+      <!-- LEFT SIDE / MAIN -->
+      <div class="pn-main-stack">
+        <!-- Hero -->
+        <section
+          class="pn-hero-section"
+          aria-label="Restaurant Vorschau"
+        ></section>
+
+        <section class="pn-noodlebox-section">
+          <div class="pn-noodlebox-wrapper">
+            <img
+              src="assets/img/takeaway.png"
+              alt="Illustration einer Nudelbox"
+              class="pn-noodlebox-img"
+            />
+          </div>
+        </section>
+
+        <!-- RESTAURANT-HEADER + BEWERTUNGS-BUTTON -->
+        <section class="pn-restaurant-header">
+          <h2 id="restaurant-title">Paradise Noodles</h2>
+          <p class="pn-restaurant-meta">
+            <!-- Nur noch ein Button, der das Bewertungsfenster öffnet -->
             <button
-              id="closeDialog"
-              class="pn-close-dialog"
-              aria-label="Warenkorb schließen"
+              id="openRatingModal"
+              class="pn-rating-link"
+              type="button"
             >
-              ✕
+              <span aria-label="Bewertung">Bewertung</span> (4.2 von 5 Sternen)
             </button>
-          </header>
+          </p>
+        </section>
 
-          <!-- 🔹 LEER-ZUSTAND MOBILE -->
-          <div id="basketEmptyMobile" class="pn-basket-empty">
-            <img
-              src="assets/img/cart.svg"
-              class="pn-basket-empty-icon"
-              alt=""
-            />
-            <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
-            <button class="pn-basket-empty-btn pn-empty-mobile" disabled>
-              Bestellen
-            </button>
-          </div>
+        <nav class="pn-category-tabs" aria-label="Kategorien">
+          <ul>
+            <li class="pn-tab-btn" data-category="Hauptgerichte">
+              Hauptgerichte
+            </li>
+            <li class="pn-tab-btn" data-category="Beilagen">Beilagen</li>
+            <li class="pn-tab-btn" data-category="Getränke">Getränke</li>
+          </ul>
+        </nav>
 
-          <!-- Artikel-Liste MOBILE -->
-          <div id="basketItemsMobile" class="pn-basket-dialog-items"></div>
+        <!-- Unteres Hero Bild -->
+        <section
+          class="pn-hero-section-lower"
+          aria-label="Unterer Bildabschnitt"
+        ></section>
 
-          <!-- SUMMENBEREICH MOBILE -->
-          <div id="basketSummaryMobile" class="pn-basket-summary-mobile">
-            <div class="pn-row">
-              <span>Zwischensumme</span><span id="subTotalM">0,00 €</span>
-            </div>
-            <div class="pn-row">
-              <span>Lieferkosten</span><span id="deliveryM">3,50 €</span>
-            </div>
-            <div class="pn-row pn-total">
-              <strong>Gesamt</strong
-              ><strong id="grandTotalM">3,50 €</strong>
-            </div>
-            <button id="checkoutBtnM" class="pn-btn-primary-mobile">
-              Bestellen
-            </button>
-          </div>
-        </div>
+        <!-- MENU -->
+        <main id="main" class="pn-menu-area" role="main">
+          <section id="menu" class="pn-menu" aria-label="Gerichte"></section>
+        </main>
       </div>
 
-      <!-- MOBILE TOGGLE BUTTON -->
-      <button
-        id="basketToggle"
-        class="pn-basket-toggle"
-        aria-expanded="false"
-        aria-controls="basketDialog"
+      <!-- BASKET DESKTOP -->
+      <aside
+        id="basket"
+        class="pn-basket"
+        aria-labelledby="basket-title"
+        aria-live="polite"
       >
-        <img src="assets/img/cart.svg" class="pn-cart-icon" alt="" />
-        <span>Deine Bestellung</span>
-        <span id="miniTotal">0,00 €</span>
-      </button>
+        <h2 id="basket-title">Deine Bestellung</h2>
 
-      <!-- Template für Desktop + Mobile -->
-      <template id="basketItemTemplate">
-        <div class="basket-item">
-          <span class="basket-item-name"></span>
+        <div id="scrollIndicator">
+          <div id="scrollIndicatorBar"></div>
+        </div>
 
-          <div class="basket-item-qty-controls">
-            <button class="qty-btn qty-minus" type="button">−</button>
-            <span class="basket-item-qty"></span>
-            <button class="qty-btn qty-plus" type="button">+</button>
-          </div>
-
-          <span class="basket-item-total"></span>
-
-          <button class="qty-btn qty-delete" type="button">
-            <img
-              src="assets/img/delete-bin-line.svg"
-              alt="Löschen"
-            />
+        <div id="basketEmptyDesktop" class="pn-basket-empty">
+          <img
+            src="assets/img/cart.svg"
+            class="pn-basket-empty-icon"
+            alt=""
+          />
+          <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
+          <button class="pn-basket-empty-btn pn-empty-desktop" disabled>
+            Bestellen
           </button>
         </div>
-      </template>
 
-      <footer class="pn-app-footer">
-        <div class="footer-left">
-          <img
-            src="assets/img/Material/Favicon/apple-touch-icon.png"
-            class="footer-logo"
-            alt="Logo"
-          />
-          <span>BestellApp</span>
-        </div>
+        <!-- Artikel-Liste DESKTOP -->
+        <div id="basketItems" class="pn-basket-items"></div>
 
-        <div class="footer-right">
-          <a href="#">Datenschutz</a>
-          <a href="#">Impressum</a>
-          <a href="#">Kontakt</a>
+        <!-- SUMMENBEREICH DESKTOP -->
+        <div id="basketSummaryDesk" class="pn-basket-summary">
+          <div class="pn-row">
+            <span>Zwischensumme</span><span id="subTotal">0,00 €</span>
+          </div>
+          <div class="pn-row">
+            <span>Lieferkosten</span><span id="delivery">2,50 €</span>
+          </div>
+          <div class="pn-row pn-total">
+            <strong>Gesamt</strong>
+            <strong id="grandTotal">3,50 €</strong>
+          </div>
+          <button id="checkoutBtn" class="pn-btn pn-btn-primary">
+            Bestellen
+          </button>
+          <p id="orderMsg" class="pn-order-msg" role="status"></p>
         </div>
-      </footer>
+      </aside>
     </div>
 
-    <!-- SCRIPT FILES -->
-    <script src="script.js"></script>
-    <script src="scripts/db.js"></script>
-    <script src="scripts/tamplate.js"></script>
-  </body>
+    <!-- MOBILE BASKET DIALOG -->
+    <div id="basketDialog" class="pn-basket-dialog" hidden>
+      <div
+        class="pn-basket-dialog-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="basket-title-mobile"
+      >
+        <header class="pn-basket-dialog-header">
+          <h2 id="basket-title-mobile">Deine Bestellung</h2>
+          <button
+            id="closeDialog"
+            class="pn-close-dialog"
+            aria-label="Warenkorb schließen"
+          >
+            ✕
+          </button>
+        </header>
+
+        <div id="basketEmptyMobile" class="pn-basket-empty">
+          <img
+            src="assets/img/cart.svg"
+            class="pn-basket-empty-icon"
+            alt=""
+          />
+          <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
+          <button class="pn-basket-empty-btn pn-empty-mobile" disabled>
+            Bestellen
+          </button>
+        </div>
+
+        <div id="basketItemsMobile" class="pn-basket-dialog-items"></div>
+
+        <div id="basketSummaryMobile" class="pn-basket-summary-mobile">
+          <div class="pn-row">
+            <span>Zwischensumme</span><span id="subTotalM">0,00 €</span>
+          </div>
+          <div class="pn-row">
+            <span>Lieferkosten</span><span id="deliveryM">2,50 €</span>
+          </div>
+          <div class="pn-row pn-total">
+            <strong>Gesamt</strong>
+            <strong id="grandTotalM">3,50 €</strong>
+          </div>
+          <button id="checkoutBtnM" class="pn-btn-primary-mobile">
+            Bestellen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON für Mobile Basket -->
+    <button
+      id="basketToggle"
+      class="pn-basket-toggle"
+      aria-expanded="false"
+      aria-controls="basketDialog"
+    >
+      <img src="assets/img/cart.svg" class="pn-cart-icon" alt="" />
+      <span>Deine Bestellung</span>
+      <span id="miniTotal">0,00 €</span>
+    </button>
+
+    <!-- TEMPLATE für Basket Items -->
+    <template id="basketItemTemplate">
+      <div class="basket-item">
+        <span class="basket-item-name"></span>
+
+        <div class="basket-item-qty-controls">
+          <button class="qty-btn qty-minus" type="button">−</button>
+          <span class="basket-item-qty"></span>
+          <button class="qty-btn qty-plus" type="button">+</button>
+        </div>
+
+        <span class="basket-item-total"></span>
+
+        <button class="qty-btn qty-delete" type="button">
+          <img
+            src="assets/img/delete-bin-line.svg"
+            alt="Löschen"
+          />
+        </button>
+      </div>
+    </template>
+
+    <!-- BEWERTUNGS-FENSTER (MODAL) -->
+    <div id="ratingModal" class="pn-rating-modal" hidden>
+      <div
+        class="pn-rating-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ratingModalTitle"
+      >
+        <header class="pn-rating-modal-header">
+          <h3 id="ratingModalTitle">Bewertung abgeben</h3>
+          <button
+            id="closeRatingModal"
+            class="pn-rating-modal-close"
+            type="button"
+            aria-label="Bewertungsfenster schließen"
+          >
+            ✕
+          </button>
+        </header>
+
+        <div class="pn-rating-modal-body">
+          <div class="pn-stars" aria-label="Deine Bewertung">
+            <button type="button" class="pn-star" data-value="1">★</button>
+            <button type="button" class="pn-star" data-value="2">★</button>
+            <button type="button" class="pn-star" data-value="3">★</button>
+            <button type="button" class="pn-star" data-value="4">★</button>
+            <button type="button" class="pn-star" data-value="5">★</button>
+          </div>
+
+          <p id="pn-rating-hint" class="pn-rating-hint">
+            Klicke auf die Sterne, um zu bewerten.
+          </p>
+
+          <label class="pn-rating-label" for="pn-review-text">Dein Kommentar</label>
+          <textarea
+            id="pn-review-text"
+            rows="3"
+            placeholder="Wie hat dir Paradise Noodles gefallen?"
+          ></textarea>
+
+          <button id="pn-review-submit" type="button" class="pn-btn pn-btn-primary">
+            Abschicken
+          </button>
+
+          <ul id="pn-review-list" class="pn-review-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="pn-app-footer">
+      <div class="footer-left">
+        <img
+          src="assets/img/Material/Favicon/apple-touch-icon.png"
+          class="footer-logo"
+          alt="Logo"
+        />
+        <span>BestellApp</span>
+      </div>
+
+      <div class="footer-right">
+        <a href="index.html">Menü</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="contact.html">Kontakt</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCRIPT FILES -->
+  <script src="scripts/db.js"></script>
+  <script src="script.js"></script>
+  <script src="scripts/tamplate.js"></script>
+</body>
 </html>

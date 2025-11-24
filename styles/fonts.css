@@ -1,0 +1,85 @@
+
+  /* GOOGLE FONTS IMPORT – Elegante Auswahl */
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+  
+  
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  
+  
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
+  
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+  
+  
+  /* =====================================
+     STANDARD FONT – du kannst es ändern
+     ===================================== */
+  
+  body {
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  
+  
+  
+  /* --- Überschriften (h1, h2, h3…) --- */
+  h1, h2, h3, h4  {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+  
+  /* --- Buttons --- */
+  button, 
+  .btn, 
+  .pn-button, 
+  .action-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+  
+  
+  .small-text,
+  .description,
+  p.small {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  
+  .long-text,
+  .text-block,
+  p.long {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .readable {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  
+  .product-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+  
+  /* Preise */
+  .price {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+  }
+  
+  /* Navigation / Menü */
+  nav, .menu, .header-nav {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Footer */
+  footer {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+  }

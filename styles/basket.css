@@ -1,7 +1,3 @@
-/* ===============================
-    DESKTOP WARENKORB
-================================= */
-
 .pn-basket {
   width: 380px;
   position: sticky;
@@ -11,26 +7,22 @@
   flex-direction: column;
   justify-content: space-between;
   background: #fff;
-  border-left: 1px solid #eaeaea;
+  border-left: 2px solid #eaeaea;
   box-shadow: -4px 0 12px rgba(0,0,0,0.08);
-  padding: 12px 20px;
+  padding: 0px 0 12px 0px;
   margin: 0;
   padding-top: 1rem;
   z-index: 900;
 }
 
-/* Titel "Deine Bestellung" */
+
 #basket-title {
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  padding: 1.2rem 0rem;
+  width: 100%;
   margin: 0;
-  width: calc(100% + 30px);
-  display: block;
+  padding: 1.2rem 14px;
+  box-sizing: border-box;
   border-bottom: 2px solid #ddd;
-  margin-left: -14px;
-  margin-right: -14px;
+  text-align: center;
 }
 
 /* LEER-ZUSTAND Desktop & Mobile */
@@ -56,7 +48,7 @@
   font-size: 0.9rem;
 }
 
-/* Basis-Stil für beide Empty-Buttons */
+
 .pn-basket-empty-btn {
   margin-top: 0.5rem;
   padding: 0.9rem 2rem;
@@ -73,16 +65,16 @@
 }
 
 #basketEmptyDesktop .pn-basket-empty-btn {
-  max-width: 340px;
+  max-width: 100%;         
+  width: 100%;              
   position: relative;
-  right: 15px;
-  margin: 0 auto;
-  width: calc(100% + 2rem) !important;
+  right: 0;                 
+  margin: 16px 0 0 0;      
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: .9rem 0rem 0.6rem;
-  margin-top: 16px;
+  padding: 0.9rem 0 0.6rem;
+  box-sizing: border-box;   
 }
 
 .pn-basket-empty-icon {
@@ -106,7 +98,7 @@
 }
 
 #basketItems::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 #basketItems::-webkit-scrollbar-thumb {
   background: #ccc;
@@ -120,6 +112,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 8px 0;
+  padding-left: 1rem;
   border-bottom: 1px solid #eee;
   font-size: 0.95rem;
 }
@@ -293,10 +286,6 @@
   padding: 1rem 1.2rem 0.5rem;
 }
 
- 
-  /* SUMMARY MOBILE (weiter oben) */
- 
-
 .pn-basket-summary-mobile {
   padding: 1rem 1.2rem 1.4rem;
   background: #fff;
@@ -357,16 +346,17 @@
 
 
 .pn-basket-toggle {
-  position: fixed;
-  bottom: 0.9rem;
+  position: relative;
+  padding-bottom: 16px;
+  top: -20px;
   left: 50%;
   transform: translateX(-50%);
   background: #ff7a00;
   color: #fff;
   font-weight: 700;
-  padding: 0.75rem 1.2rem;
-  width: calc(100% - 2rem);
-  max-width: 480px;
+  padding: 0.95rem 1.6rem !important;
+  width: calc(100% + 2rem);
+  max-width: 420px;
   border: none;
   border-radius: 6px;
   box-shadow: 0 4px 14px rgba(255,100,0,0.3);
@@ -399,11 +389,70 @@
   position: relative;
   right: 90px;
 }
+/* Hintergrund der kleinen Leiste im Basket */
+.scroll-progress {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  margin: 8px 0 12px; /* kleiner Abstand */
+}
+
+/* Orange Füllung */
+.scroll-progress__bar {
+  width: 0;
+  height: 100%;
+  background: #ff7a00;
+  transition: width 0.1s linear;
+}
 
 
+
+
+/* Die graue Leiste rechts */
+#scrollIndicator {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100vh;
+  background: #e6e6e6;
+  z-index: 9999;
+  
+}
+
+/* Das orange Stück (Scroll-Fortschritt) */
+#scrollIndicatorBar {
+  width: 100%;
+  background: #ff7a00;
+  height: 500px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  scroll-behavior: none;
+}
+
+#scrollIndicatorBar::before,
+#scrollIndicatorBar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;          
+  background: #ff7a00;  
+  border-radius: 999px; 
+}
+
+/* oben */
+#scrollIndicatorBar::before {
+  top: -4px;            
+}
+
+/* unten */
+#scrollIndicatorBar::after {
+  bottom: -4px;         /* halb nach unten geschoben */
+}
 
  /*   RESPONSIVE */
-
 @media (max-width: 1020px) {
   .pn-basket {
     display: none !important;
@@ -411,6 +460,8 @@
   .pn-basket-toggle {
     display: flex !important;
   }
+
+
 }
 
 @media (min-width: 1021px) {
@@ -421,10 +472,11 @@
   .pn-basket {
     display: flex;
   }
+
 }
 
 /* Extra: sehr kleine Geräte */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .pn-basket-dialog-content {
     height: 100vh;
   }
@@ -440,7 +492,7 @@
     font-size: 20px;
     font-weight: 700;
     position: relative;
-    right: 90px;
+    right: 80px;
   }
 }
 
@@ -448,14 +500,127 @@
   .pn-basket-toggle span:first-of-type {
     font-size: 16px;
     line-height: 1;
+    font-weight: 600;
   } 
 
   /* Betrag rechts */
   #miniTotal {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
     position: relative;
-    right: 15px;
+    right: 5px !important;
   } 
 
-} 
+}
+
+
+@media (max-width: 1200px) {
+  .pn-basket {
+    width: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .pn-basket-toggle {
+    width: calc(100% - 2rem);
+    max-width: 380px;
+    top: -6px;
+    padding: 0.6rem 0.9rem;
+  }
+
+  .pn-basket-toggle span:first-of-type {
+    font-size: 17px;
+  }
+
+  #miniTotal {
+    font-size: 17px;
+    right: 40px;
+  }
+
+  .pn-cart-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* 4) Bis 480px – kleine Smartphones */
+@media (max-width: 480px) {
+
+  .pn-basket-toggle {
+    width: calc(100% - 1.5rem);
+    max-width: 340px;
+    padding: 0.6rem 0.8rem;
+    box-shadow: 0 3px 10px rgba(255,100,0,0.25);
+  }
+
+  .pn-basket-toggle span:first-of-type {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  #miniTotal {
+    font-size: 15px;
+    right: 24px;
+  }
+
+  .pn-cart-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+@media (max-width: 360px) {
+
+  .pn-basket-toggle {
+    width: calc(100% - 1rem);
+    max-width: 310px;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .pn-basket-toggle span:first-of-type {
+    font-size: 14px;
+  }
+
+  #miniTotal {
+    font-size: 14px;
+    right: 16px;
+  }
+}
+
+
+/* zusetzlich Layout */
+
+#basketItems,
+.pn-basket-summary {
+  padding-right: 16px;       
+  box-sizing: border-box;
+}
+
+
+.basket-item-total {
+  padding-right: 1.2rem;
+}
+
+
+#checkoutBtn {
+  width: calc(100% - 5px);  
+  margin-left: 5px; 
+}        
+
+.pn-basket-summary {
+  padding: 0.9rem 0.75rem 1.4rem;
+  padding-right: 1.2rem;
+}
+
+/* Button deaktiviert */
+#checkoutBtn:disabled,
+#checkoutBtnM:disabled,
+.pn-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  margin-left: 40px;
+  width: calc(100% + 5px);
+ 
+}
