@@ -195,7 +195,7 @@
 /* Button Desktop */
 #checkoutBtn {
   display: block;
-  width: calc(100% - 5px);
+  width: calc(100% - 2px);
   margin-top: 1.2rem;
   margin-left: 5px;
   padding: 0.85rem 1.2rem;
@@ -565,6 +565,25 @@
 
 /* zusätzlich Layout */
 
+
+
+/* Button deaktiviert – nur Optik, keine Position ändern */
+#checkoutBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  margin-left: 1.8rem !important;
+  padding: 0.85rem 2rem;
+  
+}
+
+#checkoutBtnM:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+ 
+
 #basketItems,
 .pn-basket-summary {
   padding-right: 16px;
@@ -580,11 +599,3 @@
   padding-right: 1.2rem;
 }
 
-/* Button deaktiviert – nur Optik, keine Position ändern */
-#checkoutBtn:disabled,
-#checkoutBtnM:disabled,
-.pn-btn-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-}

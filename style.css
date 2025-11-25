@@ -8,6 +8,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  scroll-behavior: none;
 }
 
 
@@ -96,10 +97,11 @@ html, body {
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 34px;
+  font-size: 60px;
   color: #fff;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
 }
 
 .pn-nav-menu ul {
@@ -122,6 +124,7 @@ html, body {
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
+  font-family: "Raleway", sans-serif;
 
  
 }

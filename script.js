@@ -530,3 +530,4 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', closeMenuFn);
   });
 });
+

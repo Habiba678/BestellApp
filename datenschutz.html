@@ -221,7 +221,7 @@
     @media (max-width: 768px) {
       main {
         margin: 80px auto 30px auto;
-        padding: 0 14px;
+        padding: 0 30px;
       }
 
       main h1 { font-size: 26px; }
@@ -241,7 +241,10 @@
       main p  { font-size: 15px; }
     }
 
-    /* FOOTER – wie bei Impressum/Kontakt */
+    /* ====================================
+       FOOTER – Logo + Text nebeneinander
+    ==================================== */
+
     .pn-app-footer {
       width: 100%;
       background: #1e1e2f;
@@ -253,9 +256,9 @@
       align-items: center;
       gap: 1.2rem;
       margin: 0;
-      font-family: "Raleway", sans-serif;
     }
 
+    /* Logo + Name */
     .footer-top {
       display: flex;
       align-items: center;
@@ -270,11 +273,11 @@
 
     .footer-app-name {
       font-weight: 600;
-      font-family: "Raleway", sans-serif;
       font-size: 22px;
       opacity: 0.95;
     }
 
+    /* Links */
     .footer-right {
       display: flex;
       gap: 0.6rem;
@@ -287,7 +290,7 @@
       color: #ffffff;
       text-decoration: none;
       opacity: 0.85;
-      transition: 0.25s;
+      transition: color 0.25s ease, opacity 0.25s ease;
     }
 
     .footer-right a:hover {
@@ -295,11 +298,31 @@
       color: #ff7a00;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1194px) {
+      .pn-app-footer {
+        width: 100%;
+        padding: 1rem 0.5rem;
+      }
       .footer-right {
+        gap: 0.4rem;
         font-size: 16px;
       }
+      .footer-app-name {
+        font-size: 20px;
+      }
     }
+
+
+    @media (max-width: 768px) {
+      
+
+      .footer-right {
+        gap: 0.4rem;
+        font-size: 16px;
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 
