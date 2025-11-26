@@ -268,8 +268,6 @@ html {
   background: #ff8c00;
 }
 
-/* Immer Abstand zwischen den einzelnen Gerichten */
-
 .pn-menu-item {
   margin-bottom: 20px !important;
   border-radius: 10px;
@@ -279,8 +277,6 @@ html {
   margin-bottom: 0 !important;
 }
 
-/* Kein Abstand zwischen Kategorie-Bild und Kategorie-Titel */
-
 .pn-category-image {
   margin-bottom: 0 !important;
 }
@@ -288,9 +284,6 @@ html {
 .pn-category-title {
   margin-top: 0 !important;
 }
-
-
-/* DESIGN WIE AUF DEM FOTO */
 
 
 .pn-category-section {
@@ -368,8 +361,6 @@ html {
   color: #fff;
   transform: scale(1.05);
 }
-
-/* Kategorie-Header als EINE Box (Bild + Titel zusammen) */
 
 .pn-category-image {
   display: block;
@@ -464,15 +455,11 @@ html {
 }
 
 
-/* Linien-Stil für Kategorien & Menü mit Plus oben */
-
-
 .pn-category-section {
   background: #fff;
   margin-bottom: 20px;
 }
 
-/* Bild mit Linie oben & unten */
 
 .pn-category-image {
   display: block;
@@ -484,7 +471,6 @@ html {
   position: relative;
 }
 
-/* Kategorie-Titel direkt unter Bild */
 
 .pn-category-title {
   font-size: 1.4rem;
@@ -497,7 +483,6 @@ html {
   border-bottom: 1px solid #dcdcdc;
 }
 
-/* Menü-Items im Linien-Stil */
 
 .pn-menu-item {
   position: relative;
