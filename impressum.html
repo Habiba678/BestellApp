@@ -10,14 +10,14 @@
     <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
   <style>
-    /* RESET */
+   
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* Seite füllt die Höhe → kein weiß unter Footer */
+   
     html, body {
       margin: 0;
       padding: 0;
@@ -38,10 +38,10 @@
     }
 
     main {
-      flex: 1; /* drückt Footer nach unten */
+      flex: 1; 
     }
 
-    /* HEADER / APP BAR */
+  
     .pn-app-bar {
       display: flex;
       align-items: center;
@@ -59,9 +59,9 @@
       width: auto;
     }
 
-    /* NAVIGATION IM HEADER (Desktop) */
+  
     .pn-header-nav {
-      display: none; /* wird nur auf großem Screen eingeblendet */
+      display: none; 
     }
 
     .pn-header-nav ul {
@@ -84,7 +84,7 @@
       text-decoration: underline;
     }
 
-    /* BURGER BUTTON (Mobile) */
+    
     .pn-menu-toggle {
       background: none;
       border: none;
@@ -108,10 +108,14 @@
       transform: translateX(-50%);
     }
 
-    .pn-menu-icon::before { top: -7px; }
-    .pn-menu-icon::after  { top: 7px; }
+    .pn-menu-icon::before { 
+      top: -7px; 
+    }
+    .pn-menu-icon::after  { 
+      top: 7px; 
+    }
 
-    /* Ab 900px: Burger weg, Text-Menü sichtbar */
+    
     @media (min-width: 900px) {
       .pn-menu-toggle {
         display: none;
@@ -122,7 +126,7 @@
       }
     }
 
-    /* FULLSCREEN-MENÜ (nur mobile per Burger) */
+    
     .fullscreen-menu {
       position: fixed;
       inset: 0;
@@ -169,7 +173,7 @@
       font-family: "Raleway", sans-serif;
     }
 
-    /* MAIN – etwas nach links geschoben */
+    
     main {
       max-width: 700px;
       margin: 120px 20px 40px 120px; 
@@ -196,10 +200,6 @@
       text-decoration: underline;
     }
 
-    /* ====================================
-       FOOTER – Logo + Text nebeneinander
-    ==================================== */
-
     .pn-app-footer {
       width: 100%;
       background: #1e1e2f;
@@ -213,7 +213,7 @@
       margin: 0;
     }
 
-    /* Logo + Name */
+   
     .footer-top {
       display: flex;
       align-items: center;
@@ -232,7 +232,7 @@
       opacity: 0.95;
     }
 
-    /* Links */
+
     .footer-right {
       display: flex;
       gap: 0.6rem;
@@ -279,18 +279,16 @@
       }
     }
 
-    /* Kein Footer display:none irgendwo! */
   </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="pn-app-header">
   <div class="pn-app-bar">
     <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
 
-    <!-- DESKTOP-TEXT-MENÜ -->
+ 
     <nav class="pn-header-nav">
       <ul>
         <li><a href="index.html">Menü</a></li>
@@ -300,14 +298,14 @@
       </ul>
     </nav>
 
-    <!-- Burger nur auf Handy/Tablet -->
+  
     <button class="pn-menu-toggle" aria-label="Menü öffnen">
       <span class="pn-menu-icon"></span>
     </button>
   </div>
 </header>
 
-<!-- FULLSCREEN-MENÜ (nur mobile per Burger) -->
+
 <nav class="fullscreen-menu" id="fullscreenMenu">
   <div class="close-menu" id="closeMenu">×</div>
   <ul>
@@ -318,7 +316,6 @@
   </ul>
 </nav>
 
-<!-- INHALT IMPRESSUM -->
 <main>
   <h1>Impressum</h1>
   <p>
@@ -338,7 +335,7 @@
   </p>
 </main>
 
-<!-- FOOTER -->
+
 <footer class="pn-app-footer">
   <div class="footer-top">
     <img src="assets/img/Material/Favicon/apple-touch-icon.png"

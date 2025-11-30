@@ -1,8 +1,3 @@
-
-/* ====================================
-   Footer – zentriert & responsive
-==================================== */
-
 .pn-app-footer {
     width: 100%;
     background: #1e1e2f;
@@ -17,14 +12,12 @@
     
   }
   
-  /* Logo */
   .footer-logo {
     width: 40px;
     height: 40px;
     opacity: 0.9;
   }
-  
-  /* Name */
+
   .footer-app-name {
     font-weight: 600;
     font-size: 22px;
@@ -32,12 +25,12 @@
     font-family: "Raleway", sans-serif;
   }
   
-  /* Links */
   .footer-right {
     display: flex;
     gap: 0.6rem;
-    font-size: 16px;
+    font-size: 20px;
     flex-wrap: wrap;
+    font-weight: 400;
     justify-content: center;
     font-family: "Raleway", sans-serif;
   }
@@ -59,18 +52,15 @@
     opacity: 1;
     color: #ff7a00;
   }
-  
-  /* ==========================================
-     RESPONSIVE FIX — kein Weiß ab 1194px!
-  ========================================== */
+
   @media (max-width: 1194px) {
     .pn-app-footer {
       width: 100%;
-      padding: 1rem 0.5rem;    /* WENIGER padding = kein Weiß rechts */
+      padding: 1rem 0.5rem;   
     }
   
     .footer-right {
-      gap: 0.4rem;             /* etwas enger */
+      gap: 0.4rem;            
       font-size: 15px;
     }
   
@@ -79,7 +69,7 @@
     }
   }
   
-  /* Footer auf Mobile ausblenden */
+  
   @media (max-width: 1020px) {
     .pn-app-footer {
       display: none !important;

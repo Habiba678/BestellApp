@@ -20,7 +20,7 @@
   <div class="pn-page-wrapper">
     <a class="pn-skip-link" href="#main">Zum Inhalt springen</a>
 
-    <!-- HEADER -->
+
     <header class="pn-app-header">
       <div class="pn-app-bar">
         <img
@@ -51,9 +51,9 @@
     </header>
 
     <div class="pn-content-wrapper">
-      <!-- LEFT SIDE / MAIN -->
+    
       <div class="pn-main-stack">
-        <!-- Hero -->
+        
         <section
           class="pn-hero-section"
           aria-label="Restaurant Vorschau"
@@ -69,11 +69,10 @@
           </div>
         </section>
 
-        <!-- RESTAURANT-HEADER + BEWERTUNGS-BUTTON -->
         <section class="pn-restaurant-header">
           <h2 id="restaurant-title">Paradise Noodles</h2>
           <p class="pn-restaurant-meta">
-            <!-- Nur noch ein Button, der das Bewertungsfenster öffnet -->
+           
             <button
               id="openRatingModal"
               class="pn-rating-link"
@@ -94,19 +93,16 @@
           </ul>
         </nav>
 
-        <!-- Unteres Hero Bild -->
         <section
           class="pn-hero-section-lower"
           aria-label="Unterer Bildabschnitt"
         ></section>
 
-        <!-- MENU -->
         <main id="main" class="pn-menu-area" role="main">
           <section id="menu" class="pn-menu" aria-label="Gerichte"></section>
         </main>
       </div>
 
-      <!-- BASKET DESKTOP -->
       <aside
         id="basket"
         class="pn-basket"
@@ -154,7 +150,6 @@
       </aside>
     </div>
 
-    <!-- MOBILE BASKET DIALOG -->
     <div id="basketDialog" class="pn-basket-dialog" hidden>
       <div
         class="pn-basket-dialog-content"
@@ -205,7 +200,7 @@
       </div>
     </div>
 
-    <!-- BUTTON für Mobile Basket -->
+   
     <button
       id="basketToggle"
       class="pn-basket-toggle"
@@ -217,7 +212,9 @@
       <span id="miniTotal">0,00 €</span>
     </button>
 
-    <!-- TEMPLATE für Basket Items -->
+
+
+      
     <template id="basketItemTemplate">
       <div class="basket-item">
         <span class="basket-item-name"></span>
@@ -239,7 +236,7 @@
       </div>
     </template>
 
-    <!-- BEWERTUNGS-FENSTER (MODAL) -->
+
     <div id="ratingModal" class="pn-rating-modal" hidden>
       <div
         class="pn-rating-modal-content"
@@ -307,9 +304,9 @@
     </footer>
   </div>
 
-  <!-- SCRIPT FILES -->
   <script src="scripts/db.js"></script>
   <script src="script.js"></script>
   <script src="scripts/tamplate.js"></script>
+  <script src="scripts/rating.js"></script>
 </body>
 </html>

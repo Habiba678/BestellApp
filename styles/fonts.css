@@ -1,8 +1,4 @@
-
-  /* GOOGLE FONTS IMPORT – Elegante Auswahl */
-
-
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
 
 
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
@@ -15,25 +11,16 @@
   
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
   
-  
-  /* =====================================
-     STANDARD FONT – du kannst es ändern
-     ===================================== */
-  
+
   body {
     font-family: 'Raleway', sans-serif;
   }
   
-  
-  
-  
-  /* --- Überschriften (h1, h2, h3…) --- */
   h1, h2, h3, h4  {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
   }
   
-  /* --- Buttons --- */
   button, 
   .btn, 
   .pn-button, 
@@ -67,18 +54,15 @@
     font-weight: 600;
   }
   
-  /* Preise */
   .price {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
   }
   
-  /* Navigation / Menü */
   nav, .menu, .header-nav {
     font-family: 'Poppins', sans-serif;
   }
   
-  /* Footer */
   footer {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;

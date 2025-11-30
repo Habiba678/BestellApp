@@ -7,14 +7,14 @@
   <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
   <style>
-    /* RESET */
+   
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* Seite füllt Höhe → Footer unten */
+    
     html, body {
       height: 100%;
     }
@@ -31,7 +31,7 @@
       flex: 1;
     }
 
-    /* HEADER – gleich wie Impressum */
+    
     .pn-app-bar {
       display: flex;
       align-items: center;
@@ -41,7 +41,7 @@
       color: #fff;
       position: relative;
       z-index: 10;
-      padding-left: 60px; /* leicht nach rechts wie Impressum */
+      padding-left: 60px; 
     }
 
     .pn-brand {
@@ -49,9 +49,9 @@
       width: auto;
     }
 
-    /* DESKTOP-NAVIGATION im Header */
+   
     .pn-header-nav {
-      display: none; /* nur auf großem Screen sichtbar */
+      display: none; 
     }
 
     .pn-header-nav ul {
@@ -73,7 +73,7 @@
       text-decoration: underline;
     }
 
-    /* BURGER (Mobile) */
+
     .pn-menu-toggle {
       background: none;
       border: none;
@@ -97,10 +97,14 @@
       transform: translateX(-50%);
     }
 
-    .pn-menu-icon::before { top: -7px; }
-    .pn-menu-icon::after  { top: 7px; }
+    .pn-menu-icon::before { 
+      top: -7px; 
+    }
+    .pn-menu-icon::after  { 
+      top: 7px; 
+    }
 
-    /* Desktop: Burger aus, Text-Menü an */
+
     @media (min-width: 900px) {
       .pn-menu-toggle { 
         display: none; 
@@ -111,7 +115,6 @@
       }
     }
 
-    /* FULLSCREEN MENU (Mobile) */
     .fullscreen-menu {
       position: fixed;
       inset: 0;
@@ -157,7 +160,6 @@
       font-weight: 600;
     }
 
-    /* MAIN – genau wie Impressum */
     main {
       max-width: 700px;
       margin: 120px 20px 40px 120px;
@@ -187,7 +189,6 @@
       }
     }
 
-    /* FOOTER – 1:1 wie Impressum */
     .pn-app-footer {
       width: 100%;
       background: #1e1e2f;
@@ -251,12 +252,12 @@
 
 <body>
 
-<!-- HEADER -->
+
 <header class="pn-app-header">
   <div class="pn-app-bar">
     <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
 
-    <!-- DESKTOP-TEXT-MENÜ -->
+>
     <nav class="pn-header-nav">
       <ul>
         <li><a href="index.html">Menü</a></li>
@@ -266,14 +267,13 @@
       </ul>
     </nav>
 
-    <!-- BURGER (nur Mobile/Tablet) -->
     <button class="pn-menu-toggle" aria-label="Menü öffnen">
       <span class="pn-menu-icon"></span>
     </button>
   </div>
 </header>
 
-<!-- FULLSCREEN MENU -->
+
 <nav class="fullscreen-menu" id="fullscreenMenu">
   <div class="close-menu" id="closeMenu">×</div>
   <ul>
@@ -284,7 +284,6 @@
   </ul>
 </nav>
 
-<!-- KONTAKT-INHALT -->
 <main>
   <h1>Kontakt</h1>
 
@@ -304,7 +303,6 @@
   </p>
 </main>
 
-<!-- FOOTER -->
 <footer class="pn-app-footer">
   <div class="footer-top">
     <img src="assets/img/Material/Favicon/apple-touch-icon.png"

@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
    
   <style>
-    /* RESET */
+  
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -32,7 +32,7 @@
       flex: 1;
     }
 
-    /* HEADER – wie bei Impressum/Kontakt */
+  
     .pn-app-bar {
       display: flex;
       align-items: center;
@@ -49,7 +49,6 @@
       width: auto;
     }
 
-    /* DESKTOP-NAVIGATION im Header */
     .pn-header-nav {
       display: none;
     }
@@ -73,7 +72,6 @@
       text-decoration: underline;
     }
 
-    /* BURGER (Mobile) */
     .pn-menu-toggle {
       background: none;
       border: none;
@@ -97,10 +95,14 @@
       transform: translateX(-50%);
     }
 
-    .pn-menu-icon::before { top: -7px; }
-    .pn-menu-icon::after  { top: 7px; }
+    .pn-menu-icon::before { 
+      top: -7px; 
+    }
+    .pn-menu-icon::after  { 
+      top: 7px; 
+    }
 
-    /* Desktop: Burger aus, Text-Menü an */
+  
     @media (min-width: 900px) {
       .pn-menu-toggle { 
         display: none; 
@@ -111,7 +113,7 @@
       }
     }
 
-    /* FULLSCREEN MENU (Mobile) */
+
     .fullscreen-menu {
       position: fixed;
       inset: 0;
@@ -161,7 +163,7 @@
       font-weight: 600;
     }
 
-    /* MAIN – zentriert, ohne Horizontal-Scroll */
+
     main {
       max-width: 900px;
       width: 100%;
@@ -225,9 +227,15 @@
         padding: 0 30px;
       }
 
-      main h1 { font-size: 26px; }
-      main h2 { font-size: 21px; }
-      main h3 { font-size: 18px; }
+      main h1 { 
+        font-size: 26px; 
+      }
+      main h2 { 
+        font-size: 21px; 
+      }
+      main h3 { 
+        font-size: 18px; 
+      }
     }
 
     @media (max-width: 480px) {
@@ -236,15 +244,20 @@
         padding: 0 12px;
       }
 
-      main h1 { font-size: 22px; }
-      main h2 { font-size: 19px; }
-      main h3 { font-size: 17px; }
-      main p  { font-size: 15px; }
+      main h1 { 
+        font-size: 22px; 
+      }
+      main h2 { 
+        font-size: 19px; 
+      }
+      main h3 {
+         font-size: 17px; 
+        }
+      main p  { 
+        font-size: 15px; 
+      }
     }
 
-    /* ====================================
-       FOOTER – Logo + Text nebeneinander
-    ==================================== */
 
     .pn-app-footer {
       width: 100%;
@@ -259,7 +272,7 @@
       margin: 0;
     }
 
-    /* Logo + Name */
+    
     .footer-top {
       display: flex;
       align-items: center;
@@ -278,7 +291,7 @@
       opacity: 0.95;
     }
 
-    /* Links */
+
     .footer-right {
       display: flex;
       gap: 0.6rem;
@@ -329,12 +342,12 @@
 
 <body>
 
-  <!-- HEADER -->
+
   <header class="pn-app-header">
     <div class="pn-app-bar">
       <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
 
-      <!-- DESKTOP-TEXT-MENÜ -->
+ 
       <nav class="pn-header-nav">
         <ul>
           <li><a href="index.html">Menü</a></li>
@@ -345,14 +358,14 @@
         </ul>
       </nav>
 
-      <!-- BURGER (nur Mobile/Tablet) -->
+     
       <button class="pn-menu-toggle" aria-label="Menü öffnen">
         <span class="pn-menu-icon"></span>
       </button>
     </div>
   </header>
 
-  <!-- FULLSCREEN MENU -->
+
   <nav class="fullscreen-menu" id="fullscreenMenu">
     <div class="close-menu" id="closeMenu">×</div>
     <ul>
@@ -364,7 +377,6 @@
     </ul>
   </nav>
 
-  <!-- INHALT DATENSCHUTZ -->
   <main>
     <h1>Datenschutzerklärung</h1>
     <p>
@@ -703,7 +715,7 @@
     </p>
   </main>
 
-  <!-- FOOTER -->
+
   <footer class="pn-app-footer">
     <div class="footer-top">
       <img
@@ -721,8 +733,7 @@
       <a href="datenschutz.html">Datenschutz</a>
     </div>
   </footer>
-
-  <!-- JS – Burger-Menü -->
+>
   <script>
     const burgerBtn = document.querySelector(".pn-menu-toggle");
     const fullMenu  = document.getElementById("fullscreenMenu");

@@ -24,7 +24,6 @@
   text-align: center;
 }
 
-/* LEER-ZUSTAND Desktop & Mobile */
 .pn-basket-empty {
   display: flex;
   flex-direction: column;
@@ -33,6 +32,7 @@
   gap: 0.75rem;
   padding: 2rem 1.5rem;
   color: #555;
+  
 }
 
 .pn-basket-empty-icon {
@@ -75,15 +75,12 @@
   box-sizing: border-box;
 }
 
-/* zweite Definition – kleinere Icon-Variante */
 .pn-basket-empty-icon {
   width: 32px;
   height: 32px;
   object-fit: contain;
   filter: brightness(1) invert(0.7);
 }
-
-/* ITEMS DESKTOP & MOBILE */
 
 #basketItems {
   flex: 1;
@@ -101,7 +98,6 @@
   border-radius: 4px;
 }
 
-/* Ein einzelnes Item */
 .basket-item {
   display: flex;
   align-items: center;
@@ -111,6 +107,7 @@
   padding-left: 1rem;
   border-bottom: 1px solid #eee;
   font-size: 0.95rem;
+  flex-wrap: nowrap;
 }
 
 .basket-item-name {
@@ -119,21 +116,22 @@
   color: #333;
 }
 
-/* - 1 +  Block */
 .basket-item-qty-controls {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex: 0 0 auto;
+  min-width: 90px;
+  justify-content: flex-end;
 }
 
-/* Preis rechts */
 .basket-item-total {
   font-weight: 700;
   color: #ff7a00;
   white-space: nowrap;
+  flex: 0 0 auto;
 }
 
-/* Buttons + / − / Löschen */
 .qty-btn {
   background: #fff;
   border: 1px solid #ddd;
@@ -161,7 +159,11 @@
   filter: invert(46%) sepia(94%) saturate(2966%) hue-rotate(8deg) brightness(101%);
 }
 
-/* SUMMARY DESKTOP */
+.basket-item-qty-value {
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+}
 
 .pn-basket-summary {
   border-top: 1px solid #eee;
@@ -192,7 +194,6 @@
   color: #222;
 }
 
-/* Button Desktop */
 #checkoutBtn {
   display: block;
   width: calc(100% - 2px);
@@ -220,13 +221,9 @@
   transform: scale(0.98);
 }
 
-/* WARENKORB – VOLL BILD */
-
 .pn-basket-dialog[hidden] {
   display: none !important;
 }
-
-/* Vollbild */
 .pn-basket-dialog {
   position: fixed;
   inset: 0;
@@ -236,7 +233,6 @@
   z-index: 9999;
 }
 
-/* Inhalt füllt den Screen */
 .pn-basket-dialog-content {
   width: 100%;
   height: 100vh;
@@ -246,7 +242,6 @@
   overflow: hidden;
 }
 
-/* Header oben */
 .pn-basket-dialog-header {
   padding: 1rem 1.2rem;
   border-bottom: 1px solid #ececec;
@@ -271,7 +266,6 @@
   color: #444;
 }
 
-/* Artikel-Liste im Dialog */
 .pn-basket-dialog-items {
   flex: 1;
   overflow-y: auto;
@@ -290,7 +284,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.6rem;
-  font-size: 0.95rem;
+  font-size:  0.95rem;
 }
 
 .pn-basket-summary-mobile .pn-row span:first-child {
@@ -306,7 +300,6 @@
   color: #222;
 }
 
-/* Button Mobile */
 .pn-btn-primary-mobile,
 #checkoutBtnM {
   display: block;
@@ -332,8 +325,6 @@
   transform: translateY(-1px);
 }
 
-/* MOBILE TOGGLE BUTTON Unten */
-
 .pn-basket-toggle {
   position: relative;
   padding-bottom: 16px;
@@ -357,7 +348,6 @@
   gap: 0.6rem;
 }
 
-/* Icon etwas größer & weiß */
 .pn-cart-icon {
   width: 26px;
   height: 26px;
@@ -365,21 +355,19 @@
   filter: brightness(0) invert(1);
 }
 
-/* Text "Deine Bestellung" */
 .pn-basket-toggle span:first-of-type {
   font-size: 20px;
   line-height: 1;
 }
 
-/* Betrag rechts */
 #miniTotal {
   font-size: 20px;
   font-weight: 700;
   position: relative;
-  right: 90px;
+  right: 40px;
+  
 }
 
-/* Hintergrund der kleinen Leiste im Basket */
 .scroll-progress {
   width: 100%;
   height: 6px;
@@ -387,7 +375,6 @@
   margin: 8px 0 12px;
 }
 
-/* Orange Füllung */
 .scroll-progress__bar {
   width: 0;
   height: 100%;
@@ -395,7 +382,6 @@
   transition: width 0.1s linear;
 }
 
-/* Die graue Leiste rechts */
 #scrollIndicator {
   position: fixed;
   top: 0;
@@ -406,7 +392,6 @@
   z-index: 9999;
 }
 
-/* Das orange Stück (Scroll-Fortschritt) */
 #scrollIndicatorBar {
   width: 100%;
   background: #ff7a00;
@@ -428,17 +413,69 @@
   border-radius: 999px;
 }
 
-/* oben */
 #scrollIndicatorBar::before {
   top: -4px;
 }
 
-/* unten */
+
+
+#checkoutBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  margin-left: 1.8rem !important;
+  padding: 0.85rem 2rem;
+}
+
+#checkoutBtnM:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+#basketItems,
+.pn-basket-summary {
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.basket-item-total {
+  padding-right: 1.2rem;
+}
+
+.pn-basket-summary {
+  padding: 0.9rem 0.75rem 1.4rem;
+  padding-right: 1.2rem;
+}
+
+.basket-item-qty-controls span {
+  display: inline-block;
+  width: 22px;   
+  text-align: center;
+}
 #scrollIndicatorBar::after {
   bottom: -4px;
 }
 
-/* RESPONSIVE */
+
+.basket-item-qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 90px;
+  justify-content: center;
+}
+
+.basket-item-qty {
+  display: inline-block;
+  min-width: 32px;
+  text-align: center;
+  position: relative;
+  left: 120px;
+}
+
+
+
 @media (max-width: 1020px) {
   .pn-basket {
     display: none !important;
@@ -446,6 +483,8 @@
   .pn-basket-toggle {
     display: flex !important;
   }
+
+
 }
 
 @media (min-width: 1021px) {
@@ -456,9 +495,19 @@
   .pn-basket {
     display: flex;
   }
+
+
+#miniTotal {
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  right: 90px;
+  
 }
 
-/* Extra: sehr kleine Geräte */
+
+}
+
 @media (max-width: 768px) {
   .pn-basket-dialog-content {
     height: 100vh;
@@ -521,7 +570,6 @@
   }
 }
 
-/* 4) Bis 480px – kleine Smartphones */
 @media (max-width: 480px) {
   .pn-basket-toggle {
     width: calc(100% - 1.5rem);
@@ -561,41 +609,38 @@
     font-size: 14px;
     right: 16px;
   }
+
 }
 
-/* zusätzlich Layout */
+@media (max-width: 1020px) {
+  .pn-basket-dialog-header {
+    display: flex;
+    align-items: center;     
+    justify-content: space-between; 
+    height: 56px;           
+    padding: 0 16px;        
+    border-bottom: 1px solid #ececec;
+    box-sizing: border-box;
+    padding-top: 20px;
+  }
 
+  .pn-basket-dialog-header h2 {
+    margin: 0;
+    padding: 0;
+    line-height: 1;         
+    font-size: 1.2rem;
+  }
 
+  .pn-close-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;            
+  }
 
-/* Button deaktiviert – nur Optik, keine Position ändern */
-#checkoutBtn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-  margin-left: 1.8rem !important;
-  padding: 0.85rem 2rem;
-  
+  @media (max-width: 480px) {
+    #basket-title-mobile {
+      margin-left: 20px !important;
+    }
+  }
 }
-
-#checkoutBtnM:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-}
- 
-
-#basketItems,
-.pn-basket-summary {
-  padding-right: 16px;
-  box-sizing: border-box;
-}
-
-.basket-item-total {
-  padding-right: 1.2rem;
-}
-
-.pn-basket-summary {
-  padding: 0.9rem 0.75rem 1.4rem;
-  padding-right: 1.2rem;
-}
-
