@@ -3,10 +3,8 @@ let currentRating = 0;
 function initRating() {
   let openBtn = document.getElementById("openRatingModal");
   let modal = document.getElementById("ratingModal");
-  if (!openBtn || !modal) return;
-
   let closeBtn = document.getElementById("closeRatingModal");
-  let stars = modal.querySelectorAll(".pn-star");
+  let stars = document.getElementsByClassName("pn-star");
   let hint = document.getElementById("pn-rating-hint");
   let textArea = document.getElementById("pn-review-text");
   let submitBtn = document.getElementById("pn-review-submit");
@@ -14,56 +12,76 @@ function initRating() {
 
   function setRating(value) {
     currentRating = value;
-    stars.forEach(star => {
-      let v = Number(star.dataset.value);
-      star.classList.toggle("active", v <= value);
-    });
+
+    for (let x = 0; x < stars.length; x = x + 1) {
+      let starClass = stars[x].classList;
+      if (Number(stars[x].getAttribute("data-value")) <= value) {
+        starClass.add("active");
+      } else {
+        starClass.remove("active");
+      }
+    }
+
     if (value === 0) {
       hint.textContent = "Klicke auf die Sterne, um zu bewerten.";
     } else {
-      hint.textContent = "Deine Bewertung: " + value + " von 5 Sternen.";
+      hint.textContent = "Deine Bewertung: " + value + " von 5 Sternen. WIK!";
     }
   }
 
-  openBtn.addEventListener("click", () => {
-    modal.removeAttribute("hidden");
-  });
+  openBtn.onclick = function() {
+    modal.hidden = false;
+  };
 
-  closeBtn.addEventListener("click", () => {
-    modal.setAttribute("hidden", "");
-  });
+  closeBtn.onclick = function() {
+    modal.hidden = true;
+  };
 
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.setAttribute("hidden", "");
-  });
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && !modal.hasAttribute("hidden")) {
-      modal.setAttribute("hidden", "");
+  modal.onclick = function(event) {
+    if (event.target === modal) {
+      modal.hidden = true;
     }
-  });
+  };
 
-  stars.forEach(star => {
-    star.addEventListener("click", () => {
-      let value = Number(star.dataset.value);
+  document.onkeydown = function(event) {
+    if (event.key === "Escape") {
+      modal.hidden = true;
+    }
+  };
+
+  for (let x = 0; x < stars.length; x = x + 1) {
+    stars[x].onclick = function() {
+      let value = Number(this.getAttribute("data-value"));
       setRating(value);
-    });
-  });
+    };
+  }
 
-  submitBtn.addEventListener("click", () => {
+  submitBtn.onclick = function() {
     let text = textArea.value.trim();
-    if (currentRating === 0 && text === "") return;
+    if (currentRating === 0 && text === "") {
+      return;
+    }
 
     let li = document.createElement("li");
-    li.classList.add("pn-review-item");
-    let starsText = "★".repeat(currentRating || 0);
-    li.innerHTML = `<strong>${starsText}</strong> <span>${text || "Ohne Kommentar"}</span>`;
-    list.prepend(li);
+    let starsText = "☆☆☆☆☆".split("");
+
+    for (let count = 0; count < currentRating; count = count + 1) {
+      starsText[count] = "★";
+    }
+
+    starsText = starsText.join("");
+
+    if (text === "") {
+      text = "Ohne Kommentar";
+    }
+
+    li.innerHTML = "<strong>" + starsText + "</strong> " + text;
+    list.insertBefore(li, list.firstChild);
 
     textArea.value = "";
     setRating(0);
-    modal.setAttribute("hidden", "");
-  });
+    modal.hidden = true;
+  };
 }
 
 document.addEventListener("DOMContentLoaded", initRating);

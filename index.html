@@ -20,21 +20,11 @@
   <div class="pn-page-wrapper">
     <a class="pn-skip-link" href="#main">Zum Inhalt springen</a>
 
-
     <header class="pn-app-header">
       <div class="pn-app-bar">
-        <img
-          src="assets/img/Logo.png"
-          alt="BestellApp Logo"
-          class="pn-brand"
-        />
+        <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
 
-        <button
-          class="pn-menu-toggle"
-          aria-label="Menü öffnen"
-          aria-expanded="false"
-          aria-controls="navMenu"
-        >
+        <button class="pn-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu">
           <span class="pn-menu-icon"></span>
         </button>
 
@@ -51,33 +41,19 @@
     </header>
 
     <div class="pn-content-wrapper">
-    
       <div class="pn-main-stack">
-        
-        <section
-          class="pn-hero-section"
-          aria-label="Restaurant Vorschau"
-        ></section>
+        <section class="pn-hero-section" aria-label="Restaurant Vorschau"></section>
 
         <section class="pn-noodlebox-section">
           <div class="pn-noodlebox-wrapper">
-            <img
-              src="assets/img/takeaway.png"
-              alt="Illustration einer Nudelbox"
-              class="pn-noodlebox-img"
-            />
+            <img src="assets/img/takeaway.png" alt="Illustration einer Nudelbox" class="pn-noodlebox-img" />
           </div>
         </section>
 
         <section class="pn-restaurant-header">
           <h2 id="restaurant-title">Paradise Noodles</h2>
           <p class="pn-restaurant-meta">
-           
-            <button
-              id="openRatingModal"
-              class="pn-rating-link"
-              type="button"
-            >
+            <button id="openRatingModal" class="pn-rating-link" type="button">
               <span aria-label="Bewertung">Bewertung (4.2 von 5 Sternen)</span>
             </button>
           </p>
@@ -85,175 +61,92 @@
 
         <nav class="pn-category-tabs" aria-label="Kategorien">
           <ul>
-            <li class="pn-tab-btn" data-category="Hauptgerichte">
-              Hauptgerichte
-            </li>
+            <li class="pn-tab-btn" data-category="Hauptgerichte">Hauptgerichte</li>
             <li class="pn-tab-btn" data-category="Beilagen">Beilagen</li>
             <li class="pn-tab-btn" data-category="Getränke">Getränke</li>
           </ul>
         </nav>
 
-        <section
-          class="pn-hero-section-lower"
-          aria-label="Unterer Bildabschnitt"
-        ></section>
+        <section class="pn-hero-section-lower" aria-label="Unterer Bildabschnitt"></section>
 
         <main id="main" class="pn-menu-area" role="main">
           <section id="menu" class="pn-menu" aria-label="Gerichte"></section>
         </main>
       </div>
 
-      <aside
-        id="basket"
-        class="pn-basket"
-        aria-labelledby="basket-title"
-        aria-live="polite"
-      >
+      <aside id="basket" class="pn-basket" aria-labelledby="basket-title" aria-live="polite">
         <h2 id="basket-title">Deine Bestellung</h2>
 
-        <div id="scrollIndicator">
-          <div id="scrollIndicatorBar"></div>
-        </div>
+        <div id="scrollIndicator"><div id="scrollIndicatorBar"></div></div>
 
         <div id="basketEmptyDesktop" class="pn-basket-empty">
-          <img
-            src="assets/img/cart.svg"
-            class="pn-basket-empty-icon"
-            alt=""
-          />
+          <img src="assets/img/cart.svg" class="pn-basket-empty-icon" alt="" />
           <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
-          <button class="pn-basket-empty-btn pn-empty-desktop" disabled>
-            Bestellen
-          </button>
+          <button class="pn-basket-empty-btn pn-empty-desktop" disabled>Bestellen</button>
         </div>
 
-        
         <div id="basketItems" class="pn-basket-items"></div>
 
-       
         <div id="basketSummaryDesk" class="pn-basket-summary">
-          <div class="pn-row">
-            <span>Zwischensumme</span><span id="subTotal">0,00 €</span>
-          </div>
-          <div class="pn-row">
-            <span>Lieferkosten</span><span id="delivery">2,50 €</span>
-          </div>
-          <div class="pn-row pn-total">
-            <strong>Gesamt</strong>
-            <strong id="grandTotal">3,50 €</strong>
-          </div>
-          <button id="checkoutBtn" class="pn-btn pn-btn-primary">
-            Bestellen
-          </button>
+          <div class="pn-row"><span>Zwischensumme</span><span id="subTotal">0,00 €</span></div>
+          <div class="pn-row"><span>Lieferkosten</span><span id="delivery">2,50 €</span></div>
+          <div class="pn-row pn-total"><strong>Gesamt</strong><strong id="grandTotal">3,50 €</strong></div>
+          <button id="checkoutBtn" class="pn-btn pn-btn-primary">Bestellen</button>
           <p id="orderMsg" class="pn-order-msg" role="status"></p>
         </div>
       </aside>
     </div>
 
     <div id="basketDialog" class="pn-basket-dialog" hidden>
-      <div
-        class="pn-basket-dialog-content"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="basket-title-mobile"
-      >
+      <div class="pn-basket-dialog-content" role="dialog" aria-modal="true" aria-labelledby="basket-title-mobile">
         <header class="pn-basket-dialog-header">
           <h2 id="basket-title-mobile">Deine Bestellung</h2>
-          <button
-            id="closeDialog"
-            class="pn-close-dialog"
-            aria-label="Warenkorb schließen"
-          >
-            ✕
-          </button>
+          <button id="closeDialog" class="pn-close-dialog" aria-label="Warenkorb schließen">✕</button>
         </header>
 
         <div id="basketEmptyMobile" class="pn-basket-empty">
-          <img
-            src="assets/img/cart.svg"
-            class="pn-basket-empty-icon"
-            alt=""
-          />
+          <img src="assets/img/cart.svg" class="pn-basket-empty-icon" alt="" />
           <p>Wähle leckere Gerichte und bestelle dein Menü.</p>
-          <button class="pn-basket-empty-btn pn-empty-mobile" disabled>
-            Bestellen
-          </button>
+          <button class="pn-basket-empty-btn pn-empty-mobile" disabled>Bestellen</button>
         </div>
 
         <div id="basketItemsMobile" class="pn-basket-dialog-items"></div>
 
         <div id="basketSummaryMobile" class="pn-basket-summary-mobile">
-          <div class="pn-row">
-            <span>Zwischensumme</span><span id="subTotalM">0,00 €</span>
-          </div>
-          <div class="pn-row">
-            <span>Lieferkosten</span><span id="deliveryM">2,50 €</span>
-          </div>
-          <div class="pn-row pn-total">
-            <strong>Gesamt</strong>
-            <strong id="grandTotalM">3,50 €</strong>
-          </div>
-          <button id="checkoutBtnM" class="pn-btn-primary-mobile">
-            Bestellen
-          </button>
+          <div class="pn-row"><span>Zwischensumme</span><span id="subTotalM">0,00 €</span></div>
+          <div class="pn-row"><span>Lieferkosten</span><span id="deliveryM">2,50 €</span></div>
+          <div class="pn-row pn-total"><strong>Gesamt</strong><strong id="grandTotalM">3,50 €</strong></div>
+          <button id="checkoutBtnM" class="pn-btn-primary-mobile">Bestellen</button>
         </div>
       </div>
     </div>
 
-   
-    <button
-      id="basketToggle"
-      class="pn-basket-toggle"
-      aria-expanded="false"
-      aria-controls="basketDialog"
-    >
+    <button id="basketToggle" class="pn-basket-toggle" aria-expanded="false" aria-controls="basketDialog">
       <img src="assets/img/cart.svg" class="pn-cart-icon" alt="" />
       <span>Deine Bestellung</span>
       <span id="miniTotal">0,00 €</span>
     </button>
 
-
-
-      
     <template id="basketItemTemplate">
       <div class="basket-item">
         <span class="basket-item-name"></span>
-
         <div class="basket-item-qty-controls">
           <button class="qty-btn qty-minus" type="button">−</button>
           <span class="basket-item-qty"></span>
           <button class="qty-btn qty-plus" type="button">+</button>
         </div>
-
         <span class="basket-item-total"></span>
-
         <button class="qty-btn qty-delete" type="button">
-          <img
-            src="assets/img/delete-bin-line.svg"
-            alt="Löschen"
-          />
+          <img src="assets/img/delete-bin-line.svg" alt="Löschen" />
         </button>
       </div>
     </template>
 
-
     <div id="ratingModal" class="pn-rating-modal" hidden>
-      <div
-        class="pn-rating-modal-content"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="ratingModalTitle"
-      >
+      <div class="pn-rating-modal-content" role="dialog" aria-modal="true" aria-labelledby="ratingModalTitle">
         <header class="pn-rating-modal-header">
           <h3 id="ratingModalTitle">Bewertung abgeben</h3>
-          <button
-            id="closeRatingModal"
-            class="pn-rating-modal-close"
-            type="button"
-            aria-label="Bewertungsfenster schließen"
-          >
-            ✕
-          </button>
+          <button id="closeRatingModal" class="pn-rating-modal-close" type="button" aria-label="Bewertungsfenster schließen">✕</button>
         </header>
 
         <div class="pn-rating-modal-body">
@@ -265,21 +158,12 @@
             <button type="button" class="pn-star" data-value="5">★</button>
           </div>
 
-          <p id="pn-rating-hint" class="pn-rating-hint">
-            Klicke auf die Sterne, um zu bewerten.
-          </p>
+          <p id="pn-rating-hint" class="pn-rating-hint">Klicke auf die Sterne, um zu bewerten.</p>
 
           <label class="pn-rating-label" for="pn-review-text">Dein Kommentar</label>
-          <textarea
-            id="pn-review-text"
-            rows="3"
-            placeholder="Wie hat dir Paradise Noodles gefallen?"
-          ></textarea>
+          <textarea id="pn-review-text" rows="3" placeholder="Wie hat dir Paradise Noodles gefallen?"></textarea>
 
-          <button id="pn-review-submit" type="button" class="pn-btn pn-btn-primary">
-            Abschicken
-          </button>
-
+          <button id="pn-review-submit" type="button" class="pn-btn pn-btn-primary">Abschicken</button>
           <ul id="pn-review-list" class="pn-review-list"></ul>
         </div>
       </div>
@@ -287,11 +171,7 @@
 
     <footer class="pn-app-footer">
       <div class="footer-left">
-        <img
-          src="assets/img/Material/Favicon/apple-touch-icon.png"
-          class="footer-logo"
-          alt="Logo"
-        />
+        <img src="assets/img/Material/Favicon/apple-touch-icon.png" class="footer-logo" alt="Logo" />
         <span>BestellApp</span>
       </div>
 

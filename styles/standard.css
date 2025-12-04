@@ -6,7 +6,6 @@
   --muted:#666;
   --card:#f7f7f7;
   --line:#e6e6e6;
- 
 }
 
 *{
@@ -21,8 +20,10 @@ body{
   line-height:1.4;
   height: auto;
   min-height: 100vh !important;
-  max-width: 1440px;
-  
+  width: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
+  scroll-behavior: none;
 }
 
 :focus-visible{
@@ -36,6 +37,7 @@ body{
   left:-9999px;
   top:auto;
 }
+
 .pn-skip-link:focus{
   left:1rem;
   top:1rem;
@@ -62,6 +64,7 @@ body{
   background:var(--brand);
   color:#fff;
 }
+
 .pn-btn-primary:hover{
   background:var(--brand-700);
 }
@@ -71,7 +74,6 @@ body{
   width:1px;
   height:1px;
   margin:-1px;
-  overflow:hidden;
   clip:rect(0 0 0 0);
   border:0;
   padding:0;
@@ -81,14 +83,12 @@ body{
   color:var(--muted);
 }
 
-
 .pn-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:.75rem;
 }
-
 
 .pn-icon-btn{
   background:transparent;
@@ -104,4 +104,3 @@ body{
   color: #777;
   padding: 2.5rem 1rem;
 }
-

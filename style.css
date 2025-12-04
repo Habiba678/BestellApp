@@ -1,5 +1,5 @@
 *::before,
-*::after{
+*::after {
   box-sizing: border-box;
 }
 
@@ -9,19 +9,17 @@ html, body {
   min-height: 100vh !important;
   height: auto;
   max-width: 1440px;
- 
- 
-  scroll-behavior: none;
+  font-family: "Raleway", sans-serif;
 }
 
-.pn-app-bar { 
+.pn-app-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 7%;
   background: #ff7a00;
   color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   z-index: 1000;
 }
 
@@ -74,11 +72,10 @@ html, body {
   transform: translate(-50%, 7px);
 }
 
-
 .pn-nav-menu {
   position: fixed;
   inset: 0;
-  background: rgba(255, 122, 0, 0.95);
+  background: rgba(255,122,0,0.95);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -122,16 +119,12 @@ html, body {
   font-weight: 600;
   cursor: pointer;
   font-family: "Raleway", sans-serif;
-
- 
 }
 
 .pn-nav-menu a:hover,
 .pn-nav-menu a:focus {
   text-decoration: underline;
 }
-
-
 
 .pn-hero-section {
   background: url("./assets/img/ramen.jpg") center top / cover no-repeat;
@@ -141,18 +134,13 @@ html, body {
   align-items: flex-end;
   justify-content: center;
   position: relative;
-  overflow: visible;
-  
 }
 
 .pn-hero-section-lower {
   height: 150px;
   width: 100%;
-  overflow: visible;
   margin-top: -100px;
 }
-
-
 
 .pn-noodlebox-section {
   position: relative;
@@ -168,15 +156,13 @@ html, body {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: width 0.3s ease, height 0.3s ease;
 }
-
 
 .pn-noodlebox-img {
   width: 100%;
@@ -185,38 +171,37 @@ html, body {
   border-radius: 50%;
 }
 
-
-   
 main {
   max-width: 700px;
   margin: 120px 20px 40px 120px;
   padding: 0 10px;
   line-height: 1.6;
 }
+
 main h1 {
   margin-bottom: 16px;
   font-size: 28px;
 }
+
 main p {
   margin-bottom: 14px;
   font-size: 16px;
 }
+
 main a {
   color: #ff7a00;
   text-decoration: none;
 }
+
 main a:hover {
   text-decoration: none;
 }
-
 
 @media (max-width: 899px) {
   .pn-menu-toggle {
     display: flex;
   }
 }
-
-
 
 @media (max-width: 600px) {
   .pn-hero-section {
@@ -235,125 +220,13 @@ main a:hover {
 }
 
 @media (max-width: 440px) {
-  .pn-hero-section { 
-    background-position: center top; 
-    height: 220px; 
+  .pn-hero-section {
+    background-position: center top;
+    height: 220px;
   }
 
-  .pn-hero-section-lower { 
+  .pn-hero-section-lower {
     display: none;
-    margin-top: -40px; 
-  }
-}
-
-
-
-@media (min-width: 1021px) {
-  .pn-noodlebox-wrapper {
-    transform: translate(-50%, -50%);
-  }
-}
-
-@media (max-width: 1020px) {
-  .pn-noodlebox-wrapper {
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@media (max-width: 1200px) {
-  .pn-noodlebox-wrapper {
-    width: 140px;
-    height: 140px;
-  }
-}
-
-@media (max-width: 992px) {
-  .pn-noodlebox-wrapper {
-    width: 120px;
-    height: 120px;
-  }
-
-  .pn-menu-toggle {
-    display: flex;
-  }
-}
-
-@media (max-width: 800px) {
-  .pn-noodlebox-wrapper {
-    width: 90px;
-    height: 90px;
-  }
-}
-
-@media (max-width: 600px) {
-  .pn-noodlebox-wrapper {
-    width: 75px;
-    height: 75px;
-  }
-}
-
-@media (max-width: 400px) {
-  .pn-noodlebox-wrapper {
-    width: 60px;
-    height: 60px;
-  }
-
-  .pn-menu-toggle {
-    display: flex;
-  }
-}
-
-@media (min-width: 900px) {
-
-  .pn-menu-toggle {
-    display: none !important;
-  }
-
-  .pn-nav-menu {
-    position: static;
-    inset: auto;
-    background: transparent;
-    display: block !important;
-    padding-top: 0;
-    flex-direction: row;
-    align-items: center;
-    
-   
-    
-  }
-
-  .pn-nav-menu ul {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    max-width: none;
-  }
-
-  .pn-nav-menu li {
-    padding: 0;
-    border-bottom: none;
-  }
-
-  .pn-nav-menu a {
-    font-size: 16px;
-    color: #fff;
-    font-weight: 500;
-  }
-
-  .close-menu {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .pn-page-wrapper {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
-      padding: 0 !important;
+    margin-top: -40px;
   }
 }
