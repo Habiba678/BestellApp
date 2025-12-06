@@ -144,13 +144,17 @@ function initializeCheckout() {
 }
 
 function checkout(isMobile) {
-  if (shoppingCart.length === 0) {
-    alert("Bitte füge zuerst Artikel zum Warenkorb hinzu.");
-    return;
+if (shoppingCart.length === 0) {
+  let msg = document.getElementById("orderMsg");
+  if (msg) {
+    msg.textContent = "Bitte füge zuerst Artikel zum Warenkorb hinzu.";
   }
+  return;
+}
+
   shoppingCart = [];
   updateShoppingCart();
-  showTemporaryOrderMessage("🎉 Deine Bestellung wurde aufgenommen und ist auf dem Weg!", 3500);
+  showTemporaryOrderMessage("🎉  Deine Bestellung wurde aufgenommen und ist auf dem Weg!", 3500);
   if (isMobile) {
     let dialog = document.getElementById("basketDialog");
     if (dialog) dialog.hidden = false;
@@ -172,12 +176,14 @@ function showTemporaryOrderMessage(text, duration) {
     let btn = emptyMobile.querySelector("button");
     if (btn) btn.disabled = true;
   }
+  
   setTimeout(() => {
     if (emptyDesktop) {
       emptyDesktop.querySelector("p").textContent = "Wähle leckere Gerichte und bestelle dein Menü.";
       let btn = emptyDesktop.querySelector("button");
       if (btn) btn.disabled = false;
     }
+
     if (emptyMobile) {
       emptyMobile.querySelector("p").textContent = "Wähle leckere Gerichte und bestelle dein Menü.";
       let btn = emptyMobile.querySelector("button");

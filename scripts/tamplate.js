@@ -33,7 +33,7 @@ function categorySectionTpl(category) {
 
       ${
         category.category === "Getränke"
-          ? `<img src="assets/img/getraenk.jpg" alt="Getränk" class="pn-category-image">`
+          ? `<img src="assets/img/refreshment.jpg" alt="Getränk" class="pn-category-image">`
           : ""
       }
 
