@@ -7,7 +7,7 @@ html {
 *::after {
   box-sizing: inherit;
   overscroll-behavior: none;
-  scroll-behavior: none;
+  scroll-behavior: smooth;
 }
 
 

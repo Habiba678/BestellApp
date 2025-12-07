@@ -23,7 +23,7 @@ body{
   height: auto;
   min-height: 100vh !important;
   width: 100%;
-  touch-action: auto;
+  touch-action: none;
   
 }
 
