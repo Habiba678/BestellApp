@@ -35,6 +35,7 @@ function initializeMenuClick() {
     if (selectedDish) addItemToCart(selectedDish);
   });
 }
+
 function findDishByName(dishName) {
   for (let categoryIndex = 0; categoryIndex < menu.length; categoryIndex++) {
     let category = menu[categoryIndex];
@@ -57,7 +58,6 @@ function addItemToCart(dish) {
   shoppingCart.push({ name: dish.name, price: dish.price, quantity: 1 });
   updateShoppingCart();
 }
-
 
 function updateShoppingCart() {
   renderCart("basketItems", "basketEmptyDesktop", "basketSummaryDesk");
@@ -162,33 +162,24 @@ if (shoppingCart.length === 0) {
 }
 
 function showTemporaryOrderMessage(text, duration) {
-  let emptyDesktop = document.getElementById("basketEmptyDesktop");
-  let emptyMobile = document.getElementById("basketEmptyMobile");
-  if (emptyDesktop) {
-    emptyDesktop.querySelector("p").textContent = text;
-    emptyDesktop.style.display = "flex";
-    let btn = emptyDesktop.querySelector("button");
-    if (btn) btn.disabled = true;
-  }
-  if (emptyMobile) {
-    emptyMobile.querySelector("p").textContent = text;
-    emptyMobile.style.display = "flex";
-    let btn = emptyMobile.querySelector("button");
-    if (btn) btn.disabled = true;
-  }
-  
-  setTimeout(() => {
-    if (emptyDesktop) {
-      emptyDesktop.querySelector("p").textContent = "Wähle leckere Gerichte und bestelle dein Menü.";
-      let btn = emptyDesktop.querySelector("button");
-      if (btn) btn.disabled = false;
+  let targets = ["basketEmptyDesktop", "basketEmptyMobile"];
+  targets.forEach(id => {
+    let basketElement = document.getElementById(id);
+    if (basketElement) {
+      basketElement.querySelector("p").textContent = text;
+      basketElement.style.display = "flex";
+      basketElement.querySelector("button").disabled = true;
     }
+  });
 
-    if (emptyMobile) {
-      emptyMobile.querySelector("p").textContent = "Wähle leckere Gerichte und bestelle dein Menü.";
-      let btn = emptyMobile.querySelector("button");
-      if (btn) btn.disabled = false;
-    }
+  setTimeout(() => {
+    targets.forEach(id => {
+      let  basketElement = document.getElementById(id);
+      if (basketElement) {
+        basketElement.querySelector("p").textContent = "Wähle leckere Gerichte und bestelle dein Menü.";
+        basketElement.querySelector("button").disabled = false;
+      }
+    });
   }, duration);
 }
 
@@ -215,7 +206,6 @@ function initializeBurgerMenu() {
     link.addEventListener("click", () => navigationMenu.classList.remove("pn-open"));
   });
 }
-
 
 function initializeScrollIndicator() {
   let bar = document.getElementById("scrollIndicatorBar");

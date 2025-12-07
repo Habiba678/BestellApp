@@ -1,6 +1,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  overscroll-behavior: none;
 }
 
 html, body {
@@ -10,6 +11,7 @@ html, body {
   height: auto;
   max-width: 1440px;
   font-family: "Raleway", sans-serif;
+  overscroll-behavior-block: none;
 }
 
 .pn-app-bar {

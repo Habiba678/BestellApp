@@ -1,517 +1,521 @@
 html {
-    box-sizing: border-box;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-  
-  *::before,
-  *::after {
-    scroll-behavior: none;
-    touch-action: none;
-  }
-  
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  overscroll-behavior: none;
+  scroll-behavior: none;
+}
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh !important;
+  height: auto;
+  overscroll-behavior-y: contain;
+  font-family: "Raleway", sans-serif;
+  scroll-behavior: none;
+}
+
+.pn-restaurant-header {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px 32px;
+  color: #ff7a00;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.pn-restaurant-meta span {
+  color: #ff7a00;
+  font-size: 16px;
+  padding: 0;
+  font-weight: 700 !important;
+}
+
+.pn-category-tabs {
+  background: #ff7a00;
+  width: 100%;
+  padding: 20px 0 16px;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.pn-category-tabs ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pn-category-tabs li {
+  border-radius: 0;
+  padding: 0 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+  color: black;
+  border: none;
+  transition: all 0.25s ease;
+  position: relative;
+  right: 10px;
+}
+
+.pn-category-tabs li:hover {
+  color: white;
+}
+
+.pn-content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.pn-main-stack {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.pn-menu-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.pn-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pn-basket-wrapper {
+  flex: 0 0 auto;
+}
+
+.pn-trash-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.pn-trash-btn:hover,
+.pn-trash-btn:focus {
+  color: #ff7a00;
+  transform: scale(1.15);
+}
+
+.pn-trash-btn:focus-visible {
+  outline: 2px solid #ff7a00;
+  outline-offset: 2px;
+}
+
+.pn-menu-area {
+  margin-top: 9rem;
+  padding: 0 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-bottom: 60px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.pn-category-section {
+  margin: 24px 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.pn-category-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin: 12px 0 16px 0;
+  padding: 0 4px;
+}
+
+.pn-category-image {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: 1px solid #dcdcdc;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  margin: 0 !important;
+  position: relative;
+}
+
+.pn-category-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  background: #fff;
+  padding: 12px 16px;
+  margin: 0 0 12px 0 !important;
+  border: 1px solid #dcdcdc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+}
+
+.pn-menu-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  padding: 16px 52px 16px 16px;
+  margin-bottom: 12px;
+}
+
+.pn-menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.pn-menu-item-info {
+  flex: 1;
+  padding-right: 0;
+}
+
+.pn-menu-item-info h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0 0 4px;
+}
+
+.pn-menu-item-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0 0 4px;
+}
+
+.pn-price {
+  color: #ff7a00;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.pn-add-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d1d1d1;
+  border-radius: 0 8px 0 8px;
+  background: #fff;
+  color: #ff7a00;
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pn-add-btn:hover {
+  background: #ff7a00;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.pn-rating-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #ff7a00;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pn-rating-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.pn-rating-modal[hidden] {
+  display: none;
+}
+
+.pn-rating-modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  max-width: 520px;
+  height: 70%;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+}
+
+.pn-rating-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pn-rating-modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.pn-stars {
+  display: flex;
+  gap: 4px;
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.pn-star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.pn-star.active {
+  color: #ffb400;
+}
+
+.pn-rating-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+#pn-review-text {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  min-height: 70px;
+  resize: vertical;
+}
+
+.pn-review-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
   html,
   body {
+    min-width: 320px;
     margin: 0;
     padding: 0;
     width: 100%;
-    max-width: 100%;
-    min-height: 100vh !important;
-    height: auto;
-    overscroll-behavior-y: contain;
-    font-family: "Raleway", sans-serif;
     scroll-behavior: none;
   }
-  
-  .pn-restaurant-header {
+
+  .pn-page-wrapper {
     max-width: 100%;
     margin: 0 auto;
-    padding: 16px 32px;
-    color: #ff7a00;
   }
-  
+
+  .pn-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 0 0 8px;
+  }
+
+  .pn-menu-area {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1rem;
+    padding: 0;
+  }
+
   h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
-    padding: 0;
+    font-size: 20px;
+    padding-top: 80px;
+    position: relative;
+    right: 5px;
   }
-  
+
+  .pn-menu-item-info h4 {
+    font-size: 20px;
+  }
+
   .pn-restaurant-meta span {
-    color: #ff7a00;
     font-size: 16px;
-    padding: 0;
-    font-weight: 700 !important;
+    position: relative;
+    right: 5px;
   }
-  
+
   .pn-category-tabs {
     background: #ff7a00;
     width: 100%;
+    margin: 0;
     padding: 20px 0 16px;
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   }
-  
+
   .pn-category-tabs ul {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0;
+    padding: 0 10px;
     max-width: 100%;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
   }
-  
-  .pn-category-tabs li {
-    border-radius: 0;
-    padding: 0 20px;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "Raleway", sans-serif;
-    color: black;
-    border: none;
-    transition: all 0.25s ease;
-    position: relative;
-    right: 10px;
-  }
-  
-  .pn-category-tabs li:hover {
-    color: white;
-  }
-  
-  .pn-content-wrapper {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    gap: 0;
-  }
-  
-  .pn-main-stack {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  
-  .pn-menu-area {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .pn-page-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   .pn-basket-wrapper {
-    flex: 0 0 auto;
-  }
-  
-  .pn-trash-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: #888;
-    transition: color 0.2s ease, transform 0.1s ease;
-  }
-  
-  .pn-trash-btn:hover,
-  .pn-trash-btn:focus {
-    color: #ff7a00;
-    transform: scale(1.15);
-  }
-  
-  .pn-trash-btn:focus-visible {
-    outline: 2px solid #ff7a00;
-    outline-offset: 2px;
-  }
-  
-  .pn-menu-area {
-    margin-top: 9rem;
-    padding: 0 2%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    padding-bottom: 60px;
     width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
   }
-  
-  .pn-category-section {
-    margin: 24px 0;
-    padding: 0;
-    background: transparent;
-    border: none;
-  }
-  
-  .pn-category-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #222;
-    margin: 12px 0 16px 0;
-    padding: 0 4px;
-  }
-  
-  .pn-category-image {
-    display: block;
+
+  .pn-basket {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border: 1px solid #dcdcdc;
-    border-bottom: none;
-    border-radius: 6px 6px 0 0;
-    margin: 0 !important;
-    position: relative;
+    position: static;
+    height: auto;
+    box-shadow: none;
+    border-left: none;
+    margin-top: 1.5rem;
   }
-  
-  .pn-category-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #222;
-    background: #fff;
-    padding: 12px 16px;
-    margin: 0 0 12px 0 !important;
-    border: 1px solid #dcdcdc;
-    border-top: none;
-    border-radius: 0 0 6px 6px;
+
+  #basket-title {
+    width: 100%;
   }
-  
-  .pn-menu-item {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    background: #fff;
-    border: 1px solid #d1d1d1;
-    border-radius: 8px;
-    padding: 16px 52px 16px 16px;
-    margin-bottom: 12px;
-  }
-  
-  .pn-menu-item:last-child {
-    margin-bottom: 0;
-  }
-  
-  .pn-menu-item-info {
-    flex: 1;
-    padding-right: 0;
-  }
-  
-  .pn-menu-item-info h4 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #222;
-    margin: 0 0 4px;
-  }
-  
-  .pn-menu-item-info p {
-    font-size: 1.1rem;
-    color: #555;
-    margin: 0 0 4px;
-  }
-  
-  .pn-price {
-    color: #ff7a00;
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
-  
-  .pn-add-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 42px;
-    height: 42px;
-    border: 1px solid #d1d1d1;
-    border-radius: 0 8px 0 8px;
-    background: #fff;
-    color: #ff7a00;
-    font-size: 1.6rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .pn-add-btn:hover {
-    background: #ff7a00;
-    color: #fff;
-    transform: scale(1.05);
-  }
-  
-  .pn-rating-link {
-    background: none;
-    border: none;
-    padding: 0;
-    color: #ff7a00;
-    font: inherit;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  
-  .pn-rating-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
-  .pn-rating-modal[hidden] {
-    display: none;
-  }
-  
+
   .pn-rating-modal-content {
     background: #fff;
     padding: 20px;
-    width: 100%;
-    max-width: 520px;
-    height: 70%;
+    width: 90%;
+    max-width: 360px;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.25);
   }
-  
-  .pn-rating-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .pn-rating-modal-close {
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-  }
-  
-  .pn-stars {
-    display: flex;
-    gap: 4px;
-    font-size: 28px;
-    margin: 10px 0;
-  }
-  
-  .pn-star {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #ccc;
-  }
-  
-  .pn-star.active {
-    color: #ffb400;
-  }
-  
-  .pn-rating-hint {
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 6px;
-  }
-  
-  #pn-review-text {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 8px;
-    min-height: 70px;
-    resize: vertical;
-  }
-  
-  .pn-review-list {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  @media (max-width: 768px) {
-    html,
-    body {
-      min-width: 320px;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      scroll-behavior: none;
-    }
-  
-    .pn-page-wrapper {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-  
-    .pn-content-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
-      padding: 0 0 8px;
-    }
-  
-    .pn-menu-area {
-      width: 100%;
-      max-width: 100%;
-      margin-top: 1rem;
-      padding: 0;
-    }
-  
-    h2 {
-      font-size: 20px;
-      padding-top: 80px;
-      position: relative;
-      right: 5px;
-    }
-  
-    .pn-menu-item-info h4 {
-      font-size: 20px;
-    }
-  
-    .pn-restaurant-meta span {
-      font-size: 16px;
-      position: relative;
-      right: 5px;
-    }
-  
-    .pn-category-tabs {
-      background: #ff7a00;
-      width: 100%;
-      margin: 0;
-      padding: 20px 0 16px;
-    }
-  
-    .pn-category-tabs ul {
-      margin: 0;
-      padding: 0 16px;
-      max-width: 100%;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-  
-    .pn-basket-wrapper {
-      width: 100%;
-    }
-  
-    .pn-basket {
-      width: 100%;
-      position: static;
-      height: auto;
-      box-shadow: none;
-      border-left: none;
-      margin-top: 1.5rem;
-    }
-  
-    #basket-title {
-      width: 100%;
-    }
-  
-    .pn-rating-modal-content {
-      background: #fff;
-      padding: 20px;
-      width: 90%;
-      max-width: 360px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.25);
-    }
-  }
-  
-  @media (max-width: 390px) {
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-    }
-  
-    .pn-menu-area {
-      padding: 0 10px;
-    }
-  
-    .pn-menu-item {
-      padding: 12px;
-      border-radius: 8px;
-    }
-  
-    .pn-category-tabs ul {
-      padding: 0 10px;
-    }
-  
-    .pn-category-tabs li {
-      font-size: 16px;
-      padding: 0 10px;
-    }
-  
-    h2 {
-      font-size: 20px;
-      padding-top: 80px;
-      position: relative;
-      right: 20px;
-    }
-  
-    .pn-restaurant-meta span {
-      font-size: 16px;
-      position: relative;
-      right: 20px;
-    }
-  
-    .pn-menu-item-info h4 {
-      font-size: 16px;
-    }
-  }
-  
-  @media (max-width: 320px) {
-    .pn-menu-area {
-      padding: 0 8px;
-    }
-  
-    .pn-menu-item {
-      padding: 10px;
-    }
-  
-    .pn-category-tabs ul {
-      padding: 0 8px;
-    }
-  
-    .pn-category-tabs li {
-      font-size: 12px;
-      padding: 0 8px;
-    }
-  
-    h2 {
-      font-size: 18px;
-      padding-top: 80px;
-    }
-  
-    .pn-add-btn {
-      width: 36px;
-      height: 36px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .pn-category-section {
-      width: 92%;
-      max-width: 92%;
-      margin: 16px auto;
-    }
-  }
-  
-  .problem-element-klasse {
+}
+
+@media (max-width: 390px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
     width: 100%;
   }
+
+  .pn-menu-area {
+    padding: 0 10px;
+  }
+
+  .pn-menu-item {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .pn-category-tabs ul {
+    padding: 0 10px;
+  }
+
+  .pn-category-tabs li {
+    font-size: 16px;
+    padding: 0 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+    padding-top: 80px;
+    position: relative;
+    right: 20px;
+  }
+
+  .pn-restaurant-meta span {
+    font-size: 16px;
+    position: relative;
+    right: 20px;
+  }
+
+  .pn-menu-item-info h4 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .pn-menu-area {
+    padding: 0 8px;
+  }
+
+  .pn-menu-item {
+    padding: 10px;
+  }
+
+  .pn-category-tabs ul {
+    padding: 0 8px;
+  }
+
+  .pn-category-tabs li {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    padding-top: 80px;
+  }
+
+  .pn-add-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pn-category-section {
+    width: 92%;
+    max-width: 92%;
+    margin: 16px auto;
+  }
+}
+
+.problem-element-klasse {
+  width: 100%;
+}
+
+@media (max-width: 1020px) {
+  .pn-menu-area,
+  .pn-menu {
+    padding-bottom: 30px;
+  }
+}
+
