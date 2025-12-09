@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Impressum - BestellApp</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impressum - BestellApp</title>
 
-    <meta name="theme-color" content="#d4af37" />
+  <meta name="theme-color" content="#d4af37" />
 
-    <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
-    <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
+  <link rel="icon" href="assets/img/Material/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/img/Material/Logo/Logo.png" />
+
   <style>
-   
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-   
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100vh;
-      overscroll-behavior: none;
-      max-width: 1440px;
-     
+      min-height: 100vh;
+      font-family: "Raleway", sans-serif;
+      background: #f5f5f5;
     }
 
     body {
       display: flex;
       flex-direction: column;
-      font-family: sans-serif;
-      background: #f5f5f5;
-      font-family: "Raleway", sans-serif;
-     
     }
 
-    main {
-      flex: 1; 
+    .pn-app-header {
+      width: 100%;
     }
 
-  
     .pn-app-bar {
       display: flex;
       align-items: center;
@@ -51,7 +44,6 @@
       color: #fff;
       position: relative;
       z-index: 10;
-      padding-left: 60px;
     }
 
     .pn-brand {
@@ -59,9 +51,8 @@
       width: auto;
     }
 
-  
     .pn-header-nav {
-      display: none; 
+      display: none;
     }
 
     .pn-header-nav ul {
@@ -77,14 +68,12 @@
       text-decoration: none;
       font-weight: 500;
       font-size: 16px;
-      font-family: "Raleway", sans-serif;
     }
 
     .pn-header-nav a:hover {
       text-decoration: underline;
     }
 
-    
     .pn-menu-toggle {
       background: none;
       border: none;
@@ -108,25 +97,18 @@
       transform: translateX(-50%);
     }
 
-    .pn-menu-icon::before { 
-      top: -7px; 
-    }
-    .pn-menu-icon::after  { 
-      top: 7px; 
-    }
+    .pn-menu-icon::before { top: -7px; }
+    .pn-menu-icon::after  { top: 7px; }
 
-    
     @media (min-width: 900px) {
       .pn-menu-toggle {
         display: none;
       }
-
       .pn-header-nav {
         display: block;
       }
     }
 
-    
     .fullscreen-menu {
       position: fixed;
       inset: 0;
@@ -150,7 +132,6 @@
       color: #fff;
       cursor: pointer;
       font-weight: 400;
-      font-family: "Raleway", sans-serif;
     }
 
     .fullscreen-menu ul {
@@ -170,15 +151,16 @@
       text-decoration: none;
       font-size: 20px;
       font-weight: 600;
-      font-family: "Raleway", sans-serif;
     }
 
-    
     main {
-      max-width: 700px;
-      margin: 120px 20px 40px 120px; 
-      padding: 0 10px;
+      width: 100%;
+      max-width: 900px;
+      margin: 100px auto 60px auto;
+      padding: 0 24px;
       line-height: 1.6;
+      text-align: left;
+      background: transparent;
     }
 
     main h1 {
@@ -200,6 +182,20 @@
       text-decoration: underline;
     }
 
+    @media (min-width: 1200px) {
+      main {
+        margin-left: 18%;
+        margin-right: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        margin: 80px auto 40px auto;
+        padding: 0 40px;
+      }
+    }
+
     .pn-app-footer {
       width: 100%;
       background: #1e1e2f;
@@ -210,10 +206,10 @@
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
-      margin: 0;
+      margin-top: auto;
+      
     }
 
-   
     .footer-top {
       display: flex;
       align-items: center;
@@ -231,7 +227,6 @@
       font-size: 22px;
       opacity: 0.95;
     }
-
 
     .footer-right {
       display: flex;
@@ -255,7 +250,6 @@
 
     @media (max-width: 1194px) {
       .pn-app-footer {
-        width: 100%;
         padding: 1rem 0.5rem;
       }
       .footer-right {
@@ -268,17 +262,11 @@
     }
 
     @media (max-width: 768px) {
-      main {
-        margin: 40px 20px 40px 40px;
-      }
-
       .footer-right {
-        gap: 0.4rem;
-        font-size: 16px;
         flex-direction: column;
+        font-size: 16px;
       }
     }
-
   </style>
 </head>
 
@@ -288,7 +276,6 @@
   <div class="pn-app-bar">
     <img src="assets/img/Logo.png" alt="BestellApp Logo" class="pn-brand" />
 
- 
     <nav class="pn-header-nav">
       <ul>
         <li><a href="index.html">Menü</a></li>
@@ -298,13 +285,11 @@
       </ul>
     </nav>
 
-  
     <button class="pn-menu-toggle" aria-label="Menü öffnen">
       <span class="pn-menu-icon"></span>
     </button>
   </div>
 </header>
-
 
 <nav class="fullscreen-menu" id="fullscreenMenu">
   <div class="close-menu" id="closeMenu">×</div>
@@ -318,15 +303,18 @@
 
 <main>
   <h1>Impressum</h1>
+
   <p>
     Habiba Mohamed<br>
     An der Walkenmühle 20<br>
     33607 Bielefeld
   </p>
+
   <p>
     Telefon: 017632340703<br>
     E-Mail: hananhussain12@hotmail.com
   </p>
+
   <p>
     Quelle:
     <a href="https://www.e-recht24.de" target="_blank" rel="noopener">
@@ -334,7 +322,6 @@
     </a>
   </p>
 </main>
-
 
 <footer class="pn-app-footer">
   <div class="footer-top">
@@ -358,22 +345,21 @@
   const closeBtn  = document.getElementById("closeMenu");
 
   if (burgerBtn && fullMenu && closeBtn) {
-    burgerBtn.addEventListener("click", () => {
+    burgerBtn.addEventListener("click", function () {
       fullMenu.classList.add("open");
     });
 
-    closeBtn.addEventListener("click", () => {
+    closeBtn.addEventListener("click", function () {
       fullMenu.classList.remove("open");
     });
 
-    fullMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
+    fullMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
         fullMenu.classList.remove("open");
       });
     });
   }
 </script>
-
 
 </body>
 </html>

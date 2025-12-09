@@ -1,100 +1,96 @@
 let currentRating = 0;
 
-function initRating() {
-    let openButton = document.getElementById("openRatingModal");
-    
-    let modal = document.getElementById("ratingModal");
-    
-    let closeButton = document.getElementById("closeRatingModal");
-    
-    let stars = document.getElementsByClassName("pn-star");
-    
-    let hintText = document.getElementById("pn-rating-hint");
-    
-    let textArea = document.getElementById("pn-review-text");
-    
-    let submitButton = document.getElementById("pn-review-submit");
-    
-    let reviewContainer = document.getElementById("pn-review-list");
+document.addEventListener("DOMContentLoaded", initializeRating);
 
-    function showRating(value) {
-        currentRating = value;
-
-        for (let i = 0; i < stars.length; i++) {
-            let starValue = Number(stars[i].getAttribute("data-value"));
-            if (starValue <= value) {
-                stars[i].classList.add("active");
-            } else {
-                stars[i].classList.remove("active");
-            }
-        }
-
-        if (value === 0) {
-            hintText.innerText = "Klicke auf die Sterne, um zu bewerten.";
-        } else {
-            hintText.innerText = "Deine Bewertung: " + value + " von 5 Sternen.";
-        }
-    }
-
-    openButton.onclick = function() {
-        modal.hidden = false;
-    };
-
-    closeButton.onclick = function() {
-        modal.hidden = true;
-    };
-
-    modal.onclick = function(event) {
-        if (event.target === modal) {
-            modal.hidden = true;
-        }
-    };
-
-    document.onkeydown = function(event) {
-        if (event.key === "Escape") {
-            modal.hidden = true;
-        }
-    };
-
-    for (let i = 0; i < stars.length; i++) {
-        stars[i].onclick = function() {
-            let starValue = Number(this.getAttribute("data-value"));
-            showRating(starValue);
-        };
-    }
-
-    submitButton.onclick = function() {
-        let reviewText = textArea.value.trim();
-        let reviewStars = currentRating;
-
-        if (reviewStars === 0 && reviewText === "") {
-            return;
-        }
-
-        if (reviewText === "") {
-            reviewText = "Ohne Kommentar";
-        }
-
-        let newReview = document.createElement("div");
-        newReview.classList.add("pn-review-entry");
-
-        let starsText = "";
-        for (let i = 0; i < reviewStars; i++) {
-            starsText += "★";
-        }
-        for (let i = reviewStars; i < 5; i++) {
-            starsText += "☆";
-        }
-
-        newReview.innerText = starsText + " " + reviewText;
-        reviewContainer.insertBefore(newReview, reviewContainer.firstChild);
-
-        textArea.value = "";
-        showRating(0);
-        modal.hidden = true;
-
-        alert("Neue Bewertung: " + reviewStars + " Sterne\nKommentar: " + reviewText);
-    };
+function initializeRating() {
+  loadRatingElements();
+  setupOpenAndCloseActions();
+  setupOutsideClickClose();
+  setupEscapeKeyClose();
+  setupStarClickActions();
+  setupSubmitReviewAction();
 }
 
-document.addEventListener("DOMContentLoaded", initRating);
+let buttonOpenRating, ratingOverlay, buttonCloseRating;
+let starButtons, ratingHintText, reviewTextarea;
+let submitReviewButton, reviewListContainer;
+
+function loadRatingElements() {
+  buttonOpenRating = document.getElementById("openRatingModal");
+  ratingOverlay = document.getElementById("ratingModal");
+  buttonCloseRating = document.getElementById("closeRatingModal");
+  starButtons = document.getElementsByClassName("pn-star");
+  ratingHintText = document.getElementById("pn-rating-hint");
+  reviewTextarea = document.getElementById("pn-review-text");
+  submitReviewButton = document.getElementById("pn-review-submit");
+  reviewListContainer = document.getElementById("pn-review-list");
+}
+
+function setupOpenAndCloseActions() {
+  buttonOpenRating.onclick = () => ratingOverlay.hidden = false;
+  buttonCloseRating.onclick = () => ratingOverlay.hidden = true;
+}
+
+function setupOutsideClickClose() {
+  ratingOverlay.onclick = event => {
+    if (event.target === ratingOverlay) ratingOverlay.hidden = true;
+  };
+}
+
+function setupEscapeKeyClose() {
+  document.onkeydown = event => {
+    if (event.key === "Escape") ratingOverlay.hidden = true;
+  };
+}
+
+function setupStarClickActions() {
+  for (let i = 0; i < starButtons.length; i++) {
+    starButtons[i].onclick = () => {
+      let selectedValue = Number(starButtons[i].dataset.value);
+      updateSelectedStars(selectedValue);
+    };
+  }
+}
+
+function updateSelectedStars(selectedValue) {
+  currentRating = selectedValue;
+  for (let i = 0; i < starButtons.length; i++) {
+    let starValue = Number(starButtons[i].dataset.value);
+    if (starValue <= selectedValue) {
+      starButtons[i].classList.add("active");
+    } else {
+      starButtons[i].classList.remove("active");
+    }
+  }
+  ratingHintText.textContent =
+    selectedValue === 0
+      ? "Klicke auf die Sterne, um zu bewerten."
+      : "Deine Bewertung: " + selectedValue + " von 5 Sternen.";
+}
+
+function setupSubmitReviewAction() {
+  submitReviewButton.onclick = () => {
+    let reviewText = reviewTextarea.value.trim();
+    if (reviewText === "" && currentRating === 0) return;
+    if (reviewText === "") reviewText = "Ohne Kommentar";
+    insertNewReview(reviewText);
+    reviewTextarea.value = "";
+    updateSelectedStars(0);
+    ratingOverlay.hidden = true;
+  };
+}
+
+function insertNewReview(reviewText) {
+  let reviewEntry = document.createElement("div");
+  reviewEntry.classList.add("pn-review-entry");
+
+  let starString = "";
+  for (let i = 1; i <= 5; i++) {
+    starString += i <= currentRating ? "★" : "☆";
+  }
+
+  reviewEntry.textContent = starString + " " + reviewText;
+  reviewListContainer.insertBefore(reviewEntry, 
+  reviewListContainer.firstChild
+ );
+}

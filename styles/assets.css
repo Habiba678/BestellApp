@@ -6,10 +6,7 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
-  overscroll-behavior: none;
-  scroll-behavior: smooth;
 }
-
 
 html,
 body {
@@ -18,9 +15,8 @@ body {
   width: 100%;
   min-height: 100vh !important;
   height: auto;
-  overscroll-behavior-y: contain;
   font-family: "Raleway", sans-serif;
-  scroll-behavior: none;
+  
 }
 
 .pn-restaurant-header {
@@ -74,7 +70,6 @@ h2 {
   border: none;
   transition: all 0.25s ease;
   position: relative;
-  right: 10px;
 }
 
 .pn-category-tabs li:hover {
@@ -336,16 +331,9 @@ h2 {
   gap: 6px;
 }
 
-@media (max-width: 768px) {
-  html,
-  body {
-    min-width: 320px;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    scroll-behavior: none;
-  }
 
+
+@media (max-width: 768px) {
   .pn-page-wrapper {
     max-width: 100%;
     margin: 0 auto;
@@ -519,3 +507,10 @@ h2 {
   }
 }
 
+.menu-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  padding: 0 16px;
+}

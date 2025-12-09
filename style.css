@@ -9,7 +9,6 @@ html, body {
   padding: 0;
   min-height: 100vh !important;
   height: auto;
-  max-width: 1440px;
   font-family: "Raleway", sans-serif;
   overscroll-behavior-block: none;
 }
@@ -136,6 +135,7 @@ html, body {
   align-items: flex-end;
   justify-content: center;
   position: relative;
+ 
 }
 
 .pn-hero-section-lower {
@@ -148,6 +148,7 @@ html, body {
   position: relative;
   height: 0;
   z-index: 10;
+  
 }
 
 .pn-noodlebox-wrapper {
