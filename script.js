@@ -29,9 +29,9 @@ function initializeMenuClick() {
   let menuContainer = document.getElementById("menu");
   if (!menuContainer) return;
   menuContainer.addEventListener("click", event => {
-    let button = event.target.closest(".pn-add-btn");
-    if (!button) return;
-    let dish = findDishByName(button.dataset.add);
+    let btn = event.target.closest(".pn-add-btn");
+    if (!btn) return;
+    let dish = findDishByName(btn.dataset.add);
     if (dish) addItemToCart(dish);
   });
 }
@@ -88,19 +88,19 @@ function initializeCartClick() {
 }
 
 function handleQuantityChange(event) {
-  let button = event.target.closest(".qty-btn");
-  if (!button) return;
-  let rowElement = button.closest(".basket-item");
-  if (!rowElement) return;
-  let nameElement = rowElement.querySelector(".basket-item-name");
-  if (!nameElement) return;
-  let name = nameElement.textContent;
-  let item = shoppingCart.find(item => item.name === name);
+  let btn = event.target.closest(".qty-btn");
+  if (!btn) return;
+  let row = btn.closest(".basket-item");
+  if (!row) return;
+  let nameEl = row.querySelector(".basket-item-name");
+  if (!nameEl) return;
+  let name = nameEl.textContent;
+  let item = shoppingCart.find(i => i.name === name);
   if (!item) return;
-  if (button.classList.contains("qty-plus")) item.quantity++;
-  if (button.classList.contains("qty-minus")) item.quantity--;
-  if (button.classList.contains("qty-delete")) item.quantity = 0;
-  shoppingCart = shoppingCart.filter(item => item.quantity > 0);
+  if (btn.classList.contains("qty-plus")) item.quantity++;
+  if (btn.classList.contains("qty-minus")) item.quantity--;
+  if (btn.classList.contains("qty-delete")) item.quantity = 0;
+  shoppingCart = shoppingCart.filter(i => i.quantity > 0);
   updateShoppingCart();
 }
 
@@ -131,11 +131,13 @@ function setText(id, value) {
 }
 
 function initializeTabs() {
-  let tabButtons = document.querySelectorAll(".pn-tab-btn");
-  tabButtons.forEach(tabButton => {
-    tabButtons.forEach(t => t.classList.remove("active"));
-    tabButton.classList.add("active");
-    renderMenu(tabButton.dataset.category);
+  let tabs = document.querySelectorAll(".pn-tab-btn");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderMenu(tab.dataset.category);
+    });
   });
 }
 
@@ -152,7 +154,7 @@ function checkout(isMobile) {
       let base = document.getElementById(id);
       if (!base) return;
       let message = base.querySelector(".basket-message");
-      if (message) message.textContent = "Bitte füge zuerst dein Menü hinzu.";
+      if (message) message.textContent = "Füge zuerst dein Menü hinzu.";
     });
     return;
   }
@@ -171,9 +173,9 @@ function showTemporaryOrderMessage(text, duration) {
     let base = document.getElementById(id);
     if (!base) return;
     let message = base.querySelector(".basket-message");
-    let button = base.querySelector("button");
+    let btn = base.querySelector("button");
     if (message) message.textContent = text;
-    if (button) button.disabled = true;
+    if (btn) btn.disabled = true;
   });
   setTimeout(() => restoreBasketMessage(targets), duration);
 }
@@ -183,35 +185,35 @@ function restoreBasketMessage(targets) {
     let base = document.getElementById(id);
     if (!base) return;
     let message = base.querySelector(".basket-message");
-    let button = base.querySelector("button");
-    if (message) message.textContent = "Bitte füge zuerst dein Menü hinzu.";
-    if (button) button.disabled = false;
+    let btn = base.querySelector("button");
+    if (message) message.textContent = "Füge zuerst dein Menü hinzu.";
+    if (btn) btn.disabled = false;
   });
 }
 
 function initializeCartDialog() {
   let toggle = document.getElementById("basketToggle");
   let dialog = document.getElementById("basketDialog");
-  let closeButton = document.getElementById("closeDialog");
+  let close = document.getElementById("closeDialog");
   if (!toggle || !dialog) return;
   if (dialog.showModal) {
     toggle.addEventListener("click", () => dialog.showModal());
-    if (closeButton) closeButton.addEventListener("click", () => dialog.close());
+    if (close) close.addEventListener("click", () => dialog.close());
   } else {
     toggle.addEventListener("click", () => dialog.removeAttribute("hidden"));
-    if (closeButton) closeButton.addEventListener("click", () => dialog.setAttribute("hidden", ""));
+    if (close) close.addEventListener("click", () => dialog.setAttribute("hidden", ""));
   }
 }
 
 function initializeBurgerMenu() {
-  let button = document.querySelector(".pn-menu-toggle");
-  let navigation = document.getElementById("navMenu");
-  let closeButton = document.getElementById("closeMenu");
-  if (!button || !navigation || !closeButton) return;
-  button.addEventListener("click", () => navigation.classList.toggle("pn-open"));
-  closeButton.addEventListener("click", () => navigation.classList.remove("pn-open"));
-  document.querySelectorAll("#navMenu a").forEach(link => {
-    link.addEventListener("click", () => navigation.classList.remove("pn-open"));
+  let btn = document.querySelector(".pn-menu-toggle");
+  let nav = document.getElementById("navMenu");
+  let close = document.getElementById("closeMenu");
+  if (!btn || !nav || !close) return;
+  btn.addEventListener("click", () => nav.classList.toggle("pn-open"));
+  close.addEventListener("click", () => nav.classList.remove("pn-open"));
+  document.querySelectorAll("#navMenu a").forEach(a => {
+    a.addEventListener("click", () => nav.classList.remove("pn-open"));
   });
 }
 
