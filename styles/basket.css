@@ -745,3 +745,17 @@
   }
 }
 
+
+@media (max-width: 1280px) {
+  .pn-basket-dialog {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .pn-basket-dialog-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
